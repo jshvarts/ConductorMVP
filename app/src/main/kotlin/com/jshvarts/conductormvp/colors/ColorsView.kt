@@ -8,8 +8,12 @@ import com.bluelinelabs.conductor.RouterTransaction
 import com.jshvarts.conductormvp.R
 import com.jshvarts.conductormvp.colordetail.ColorDetailView
 import com.jshvarts.conductormvp.mvp.BaseView
+import javax.inject.Inject
 
 class ColorsView : BaseView(), ColorsContract.View {
+
+    @Inject
+    lateinit var presenter: ColorsPresenter
 
     @BindView(R.id.recycler_view)
     lateinit var recyclerView: RecyclerView
@@ -19,8 +23,15 @@ class ColorsView : BaseView(), ColorsContract.View {
     private val colors = listOf("red", "white", "blue", "green")
 
     override fun onAttach(view: View) {
+
+        DaggerColorsComponent.builder()
+                //.colorsModule(this)
+                .build()
+
         recyclerView.layoutManager = LinearLayoutManager(view.context)
-        recyclerViewAdapter = ColorsAdapter(colors)
+
+        recyclerViewAdapter = ColorsAdapter(presenter.loadColors())
+
         recyclerView.adapter = recyclerViewAdapter
         recyclerViewAdapter.onItemClick = { onColorClicked(it)}
     }
@@ -32,7 +43,7 @@ class ColorsView : BaseView(), ColorsContract.View {
         router.pushController(RouterTransaction.with(colorDetailView))
     }
 
-    override fun displayUnableToLoadColorsError() {
+    override fun onUnableToLoadColors() {
         TODO("not implemented")
     }
 

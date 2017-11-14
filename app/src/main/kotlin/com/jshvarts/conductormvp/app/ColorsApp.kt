@@ -4,7 +4,7 @@ import android.app.Application
 import com.jshvarts.conductormvp.BuildConfig
 import timber.log.Timber
 
-class App : Application() {
+class ColorsApp : Application() {
     companion object {
         lateinit var component: AppComponent
             private set

@@ -6,11 +6,10 @@ package com.jshvarts.conductormvp.colors
 interface ColorsContract {
     interface View {
         fun onColorClicked(position: Int)
-        fun displayUnableToLoadColorsError()
+        fun onUnableToLoadColors()
     }
 
     interface Presenter {
-        fun loadColors()
-        fun onUnableToLoadColors()
+        fun loadColors(): List<String>
     }
 }
