@@ -6,6 +6,7 @@ import android.view.View
 import butterknife.BindView
 import com.bluelinelabs.conductor.RouterTransaction
 import com.jshvarts.conductormvp.R
+import com.jshvarts.conductormvp.app.ColorsApp
 import com.jshvarts.conductormvp.colordetail.ColorDetailView
 import com.jshvarts.conductormvp.mvp.BaseView
 import javax.inject.Inject
@@ -20,30 +21,36 @@ class ColorsView : BaseView(), ColorsContract.View {
 
     private lateinit var recyclerViewAdapter: ColorsAdapter
 
-    private val colors = listOf("red", "white", "blue", "green")
-
     override fun onAttach(view: View) {
 
         DaggerColorsComponent.builder()
-                //.colorsModule(this)
+                .appComponent(ColorsApp.component)
+                .colorsModule(ColorsModule())
                 .build()
+                .inject(this)
 
         recyclerView.layoutManager = LinearLayoutManager(view.context)
 
-        recyclerViewAdapter = ColorsAdapter(presenter.loadColors())
+        presenter.attachView(this)
+        val colors = presenter.loadColors()
 
+        recyclerViewAdapter = ColorsAdapter(colors)
+        recyclerViewAdapter.onItemClick = { onItemClicked(colors[it])}
         recyclerView.adapter = recyclerViewAdapter
-        recyclerViewAdapter.onItemClick = { onColorClicked(it)}
     }
 
-    override fun onColorClicked(position: Int) {
+    override fun onDetach(view: View) {
+        super.onDetach(view)
+        presenter.detachView()
+    }
+    override fun onItemClicked(color: String) {
         val colorDetailView = ColorDetailView().apply {
-            args.putString(ColorDetailView.EXTRA_ITEM, colors[position])
+            args.putString(ColorDetailView.EXTRA_ITEM, color)
         }
         router.pushController(RouterTransaction.with(colorDetailView))
     }
 
-    override fun onUnableToLoadColors() {
+    override fun onUnableToLoadItems() {
         TODO("not implemented")
     }
 

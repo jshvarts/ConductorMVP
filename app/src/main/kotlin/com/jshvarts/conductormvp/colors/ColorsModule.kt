@@ -5,9 +5,13 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class ColorsModule(private val view: ColorsView) {
+class ColorsModule {
 
     @PerScreen
     @Provides
-    fun providePresenter() = ColorsPresenter(view)
+    fun provideView() = ColorsView()
+
+    @PerScreen
+    @Provides
+    fun providePresenter() = ColorsPresenter()
 }

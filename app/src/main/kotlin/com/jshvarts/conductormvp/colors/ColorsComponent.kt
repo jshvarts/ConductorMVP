@@ -5,7 +5,7 @@ import com.jshvarts.conductormvp.app.PerScreen
 import dagger.Component
 
 @PerScreen
-@Component(modules = arrayOf(ColorsModule::class, ColorsViewModule::class),
+@Component(modules = arrayOf(ColorsModule::class),
         dependencies = arrayOf(AppComponent::class))
 interface ColorsComponent {
     fun inject(view: ColorsView)
