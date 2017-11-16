@@ -13,6 +13,8 @@ ext {
     daggerVersion = "2.13"
     conductorVersion = "2.1.4"
     timberVersion = "4.6.0"
+    androidArchVersion = "1.0.0"
+    paperParcelVersion = "2.0.4"
 }
 
 android {
@@ -65,6 +67,16 @@ dependencies {
 
     // Timber
     implementation "com.jakewharton.timber:timber:$timberVersion"
+
+    // Room Database
+    implementation "android.arch.persistence.room:runtime:$androidArchVersion"
+    implementation "android.arch.persistence.room:rxjava2:$androidArchVersion"
+    kapt "android.arch.persistence.room:compiler:$androidArchVersion"
+
+    // PaperParcel
+    compile "nz.bradcampbell:paperparcel:$paperParcelVersion"
+    compile "nz.bradcampbell:paperparcel-kotlin:$paperParcelVersion"
+    kapt "nz.bradcampbell:paperparcel-compiler:$paperParcelVersion"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
