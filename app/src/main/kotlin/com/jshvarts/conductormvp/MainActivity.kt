@@ -9,7 +9,7 @@ import butterknife.ButterKnife
 import com.bluelinelabs.conductor.Conductor
 import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
-import com.jshvarts.conductormvp.colors.ColorsView
+import com.jshvarts.conductormvp.notes.NotesView
 
 
 class MainActivity : AppCompatActivity() {
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         router = Conductor.attachRouter(this, container, savedInstanceState)
         if (!router.hasRootController()) {
-            router.setRoot(RouterTransaction.with(ColorsView()))
+            router.setRoot(RouterTransaction.with(NotesView()))
         }
     }
 

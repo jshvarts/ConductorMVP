@@ -70,7 +70,6 @@ dependencies {
 
     // Room Database
     implementation "android.arch.persistence.room:runtime:$androidArchVersion"
-    implementation "android.arch.persistence.room:rxjava2:$androidArchVersion"
     kapt "android.arch.persistence.room:compiler:$androidArchVersion"
 
     // PaperParcel

@@ -1,12 +1,12 @@
-package com.jshvarts.conductormvp.colors
+package com.jshvarts.conductormvp.notes
 
 import com.jshvarts.conductormvp.app.AppComponent
 import com.jshvarts.conductormvp.app.PerScreen
 import dagger.Component
 
 @PerScreen
-@Component(modules = arrayOf(ColorsModule::class),
+@Component(modules = arrayOf(NotesModule::class),
         dependencies = arrayOf(AppComponent::class))
-interface ColorsComponent {
-    fun inject(view: ColorsView)
+interface NotesComponent {
+    fun inject(view: NotesView)
 }

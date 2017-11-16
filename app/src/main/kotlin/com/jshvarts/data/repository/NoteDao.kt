@@ -6,14 +6,12 @@ import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Update
 import android.arch.persistence.room.Delete
 import android.arch.persistence.room.Query
-import com.jshvarts.data.model.Note
 import com.jshvarts.data.model.NoteEntity
-import io.reactivex.Flowable
 
 @Dao
 interface NoteDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun add(note: NoteEntity): Long
+    fun add(note: NoteEntity)
 
     @Update
     fun update(note: NoteEntity)
@@ -21,9 +19,9 @@ interface NoteDao {
     @Delete
     fun delete(note: NoteEntity)
 
-    @Query("select * from notes where id = :id")
-    fun findNoteById(id: Long): Note
+    @Query("SELECT * FROM notes WHERE id = :id")
+    fun findNoteById(id: Long): NoteEntity
 
-    @Query("SELECT * FROM notes WHERE id = :id ORDER BY timestamp DESC")
-    fun getAllNotes(id: Long): Flowable<List<NoteEntity>>
+    @Query("SELECT * FROM notes ORDER BY timestamp DESC")
+    fun getAllNotes(): List<NoteEntity>
 }
