@@ -3,6 +3,7 @@ package com.jshvarts.conductormvp.app
 import android.app.Application
 import android.arch.persistence.room.Room
 import android.content.Context
+import com.jshvarts.data.model.ModelMapper
 import com.jshvarts.data.repository.NoteDatabase
 import dagger.Module
 import dagger.Provides
@@ -25,4 +26,9 @@ class AppModule {
     @Singleton
     @Provides
     fun provideNoteDao(database: NoteDatabase) = database.noteDao()
+
+
+    @Singleton
+    @Provides
+    fun provideModelMapper() = ModelMapper()
 }

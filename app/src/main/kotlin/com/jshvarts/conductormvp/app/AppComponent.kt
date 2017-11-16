@@ -1,6 +1,7 @@
 package com.jshvarts.conductormvp.app
 
 import android.app.Application
+import com.jshvarts.data.model.ModelMapper
 import com.jshvarts.data.repository.NoteDao
 import dagger.BindsInstance
 import dagger.Component
@@ -17,4 +18,5 @@ interface AppComponent {
     }
 
     fun exposeNoteDao(): NoteDao
+    fun exposeModelMapper(): ModelMapper
 }
