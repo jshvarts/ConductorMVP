@@ -1,7 +1,7 @@
 package com.jshvarts.data.model
 
 /**
- * Maps between entity and view item.
+ * Maps between database entity and view item.
  */
 class ModelMapper {
     fun fromEntity(from: NoteEntity) = Note(from.id, from.noteText)

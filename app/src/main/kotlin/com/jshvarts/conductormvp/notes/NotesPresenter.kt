@@ -1,7 +1,6 @@
 package com.jshvarts.conductormvp.notes
 
 import com.jshvarts.data.model.ModelMapper
-import com.jshvarts.data.model.Note
 import com.jshvarts.data.repository.NoteDao
 import timber.log.Timber
 import javax.inject.Inject
@@ -19,5 +18,5 @@ class NotesPresenter @Inject constructor(private val noteDao: NoteDao, private v
         this.view = view
     }
 
-    override fun loadNotes(): List<Note> = noteDao.getAllNotes().map { it -> modelMapper.fromEntity(it) }
+    override fun loadNotes() = noteDao.getAllNotes().map(modelMapper::fromEntity)
 }
