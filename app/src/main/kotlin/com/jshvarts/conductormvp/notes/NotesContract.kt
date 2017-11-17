@@ -9,11 +9,11 @@ import com.jshvarts.conductormvp.model.Note
 interface NotesContract {
 
     interface View {
-        fun onItemClicked(item: String)
-        fun onUnableToLoadItems()
+        fun displayNotes(notes: List<Note>)
+        fun onUnableToLoadNotes()
     }
 
     interface Presenter : BasePresenter<NotesView> {
-        fun loadNotes(): List<Note>
+        fun loadNotes()
     }
 }

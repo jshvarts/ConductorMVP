@@ -17,5 +17,7 @@ class NotesPresenter @Inject constructor(private val repository: NoteRepository)
         this.view = view
     }
 
-    override fun loadNotes() = repository.getAllNotes()
+    override fun loadNotes() {
+        view.displayNotes(repository.getAllNotes())
+    }
 }

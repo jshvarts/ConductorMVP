@@ -7,13 +7,14 @@ import android.widget.TextView
 import com.jshvarts.conductormvp.R
 import com.jshvarts.conductormvp.model.Note
 
-
 /**
  * Recycler View Adapter for displaying and selecting notes.
  */
-class NotesAdapter(private val notes: List<Note>) : RecyclerView.Adapter<NotesAdapter.ViewHolder>() {
+class NotesAdapter : RecyclerView.Adapter<NotesAdapter.ViewHolder>() {
 
-    var onItemClick: (Int) -> Unit = {}
+    val notes = mutableListOf<Note>()
+
+    var onItemClick: (Note) -> Unit = {}
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         notes[position].apply { holder.noteText.text = this.noteText }
@@ -25,8 +26,14 @@ class NotesAdapter(private val notes: List<Note>) : RecyclerView.Adapter<NotesAd
         val noteText = LayoutInflater.from(parent.context)
                 .inflate(R.layout.note_item, parent, false) as TextView
         val viewHolder = ViewHolder(noteText)
-        noteText.setOnClickListener { onItemClick(viewHolder.adapterPosition) }
+        noteText.setOnClickListener { onItemClick(notes[viewHolder.adapterPosition]) }
         return viewHolder
+    }
+
+    fun updateNotes(notes: List<Note>) {
+        this.notes.clear()
+        this.notes.addAll(notes)
+        notifyDataSetChanged()
     }
 
     class ViewHolder(val noteText: TextView) : RecyclerView.ViewHolder(noteText)
