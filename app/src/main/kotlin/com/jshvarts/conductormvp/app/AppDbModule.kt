@@ -2,11 +2,11 @@ package com.jshvarts.conductormvp.app
 
 import android.arch.persistence.room.Room
 import android.content.Context
-import com.jshvarts.data.repository.NoteRepository
-import com.jshvarts.data.repository.room.RoomNoteDao
-import com.jshvarts.data.repository.room.NoteDatabase
-import com.jshvarts.data.repository.room.RoomNoteModelMapper
-import com.jshvarts.data.repository.room.RoomNoteRepository
+import com.jshvarts.conductormvp.domain.NoteRepository
+import com.jshvarts.conductormvp.data.room.RoomNoteDao
+import com.jshvarts.conductormvp.data.room.NoteDatabase
+import com.jshvarts.conductormvp.data.room.RoomNoteModelMapper
+import com.jshvarts.conductormvp.data.room.RoomNoteRepository
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

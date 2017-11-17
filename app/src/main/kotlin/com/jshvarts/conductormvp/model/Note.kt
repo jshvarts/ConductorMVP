@@ -1,4 +1,4 @@
-package com.jshvarts.data.model
+package com.jshvarts.conductormvp.model
 
 import android.os.Parcel
 import android.os.Parcelable

@@ -1,10 +1,10 @@
-package com.jshvarts.data.repository.room
+package com.jshvarts.conductormvp.data.room
 
-import com.jshvarts.data.model.Note
-import com.jshvarts.data.repository.NoteModelMapper
+import com.jshvarts.conductormvp.model.Note
+import com.jshvarts.conductormvp.data.NoteModelMapper
 
 /**
- * Maps between Room database entity and view item.
+ * Maps between Room database entity and model.
  */
 class RoomNoteModelMapper : NoteModelMapper<NoteEntity, Note> {
     override fun fromEntity(from: NoteEntity) = Note(from.id, from.noteText)

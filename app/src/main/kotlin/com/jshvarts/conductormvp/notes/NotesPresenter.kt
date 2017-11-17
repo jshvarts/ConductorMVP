@@ -1,6 +1,6 @@
 package com.jshvarts.conductormvp.notes
 
-import com.jshvarts.data.repository.NoteRepository
+import com.jshvarts.conductormvp.domain.NoteRepository
 import timber.log.Timber
 import javax.inject.Inject
 

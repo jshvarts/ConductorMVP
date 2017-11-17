@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import com.jshvarts.conductormvp.R
-import com.jshvarts.data.model.Note
+import com.jshvarts.conductormvp.model.Note
 
 
 /**

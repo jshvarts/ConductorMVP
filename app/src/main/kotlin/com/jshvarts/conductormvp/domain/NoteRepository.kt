@@ -1,6 +1,6 @@
-package com.jshvarts.data.repository
+package com.jshvarts.conductormvp.domain
 
-import com.jshvarts.data.model.Note
+import com.jshvarts.conductormvp.model.Note
 
 /**
  * Repository interface that all DataStore implementations should implement.

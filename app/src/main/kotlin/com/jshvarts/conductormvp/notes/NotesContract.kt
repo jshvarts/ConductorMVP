@@ -1,7 +1,7 @@
 package com.jshvarts.conductormvp.notes
 
 import com.jshvarts.conductormvp.mvp.BasePresenter
-import com.jshvarts.data.model.Note
+import com.jshvarts.conductormvp.model.Note
 
 /**
  * MVP Contract for displaying list of notes.
