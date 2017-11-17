@@ -1,8 +1,7 @@
 package com.jshvarts.conductormvp.notes
 
 import com.jshvarts.conductormvp.app.PerScreen
-import com.jshvarts.data.model.ModelMapper
-import com.jshvarts.data.repository.NoteDao
+import com.jshvarts.data.repository.NoteRepository
 import dagger.Module
 import dagger.Provides
 
@@ -15,5 +14,5 @@ class NotesModule {
 
     @PerScreen
     @Provides
-    fun providePresenter(noteDao: NoteDao, modelMapper: ModelMapper) = NotesPresenter(noteDao, modelMapper)
+    fun providePresenter(noteRepository: NoteRepository) = NotesPresenter(noteRepository)
 }

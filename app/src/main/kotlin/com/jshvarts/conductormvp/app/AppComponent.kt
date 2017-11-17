@@ -1,8 +1,7 @@
 package com.jshvarts.conductormvp.app
 
 import android.app.Application
-import com.jshvarts.data.model.ModelMapper
-import com.jshvarts.data.repository.NoteDao
+import com.jshvarts.data.repository.NoteRepository
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -17,6 +16,5 @@ interface AppComponent {
         fun build(): AppComponent
     }
 
-    fun exposeNoteDao(): NoteDao
-    fun exposeModelMapper(): ModelMapper
+    fun exposeNoteRepository(): NoteRepository
 }

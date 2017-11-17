@@ -1,4 +1,4 @@
-package com.jshvarts.data.repository
+package com.jshvarts.data.repository.room
 
 import android.arch.persistence.room.TypeConverter
 import java.util.Date

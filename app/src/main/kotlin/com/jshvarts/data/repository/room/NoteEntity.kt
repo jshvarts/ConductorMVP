@@ -1,4 +1,4 @@
-package com.jshvarts.data.model
+package com.jshvarts.data.repository.room
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
