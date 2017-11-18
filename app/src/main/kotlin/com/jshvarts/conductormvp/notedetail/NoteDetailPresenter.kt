@@ -17,6 +17,8 @@ class NoteDetailPresenter @Inject constructor(private val repository: NoteReposi
         disposables.add(repository.findNoteById(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { view.showLoadingIndicator() }
+                .doFinally { view.hideLoadingIndicator() }
                 .subscribe(view::displayNote, this::showUnableToLoadNoteError))
     }
 

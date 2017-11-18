@@ -4,15 +4,15 @@ import com.jshvarts.conductormvp.mvp.BasePresenter
 import com.jshvarts.conductormvp.model.Note
 
 /**
- * MVP Contract for displaying list of notes.
+ * MVP Contract for displaying note details.
  */
 interface NoteDetailContract {
 
     interface View {
         fun displayNote(note: Note)
         fun onUnableToLoadNote()
-        fun showProgressBar()
-        fun hideProgressBar()
+        fun showLoadingIndicator()
+        fun hideLoadingIndicator()
     }
 
     interface Presenter : BasePresenter<NoteDetailView> {

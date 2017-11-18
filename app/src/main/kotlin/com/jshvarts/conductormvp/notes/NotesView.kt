@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import butterknife.BindView
 import com.bluelinelabs.conductor.RouterTransaction
+import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import com.jshvarts.conductormvp.R
 import com.jshvarts.conductormvp.app.NotesApp
 import com.jshvarts.conductormvp.model.Note
@@ -64,6 +65,8 @@ class NotesView : BaseView(), NotesContract.View {
         val noteDetailView = NoteDetailView().apply {
             args.putLong(NoteDetailView.EXTRA_NOTE_ID, note.id)
         }
-        router.pushController(RouterTransaction.with(noteDetailView))
+        router.pushController(RouterTransaction.with(noteDetailView)
+                .pushChangeHandler(FadeChangeHandler())
+                .popChangeHandler(FadeChangeHandler()))
     }
 }

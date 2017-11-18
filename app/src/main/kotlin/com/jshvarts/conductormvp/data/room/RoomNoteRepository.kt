@@ -19,7 +19,7 @@ class RoomNoteRepository(private val noteDao: RoomNoteDao,
 
     override fun findNoteById(id: Long): Maybe<Note> {
         return noteDao.findNoteById(id)
-                .map { entity -> mapper.fromEntity(entity) }
+                .map { mapper.fromEntity(it) }
     }
 
     override fun getAllNotes(): Single<List<Note>> {

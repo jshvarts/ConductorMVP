@@ -1,6 +1,7 @@
 package com.jshvarts.conductormvp.notedetail
 
 import android.view.View
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import butterknife.BindView
@@ -19,8 +20,11 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
     @Inject
     lateinit var presenter: NoteDetailPresenter
 
-    @BindView(R.id.note_text)
+    @BindView(R.id.note_detail_text)
     lateinit var noteText: TextView
+
+    @BindView(R.id.note_detail_progress_bar)
+    lateinit var progressBar: ProgressBar
 
     override fun getLayoutId() = R.layout.note_detail
 
@@ -46,11 +50,11 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
         Toast.makeText(this.applicationContext, R.string.note_detail_load_error, Toast.LENGTH_LONG).show()
     }
 
-    override fun showProgressBar() {
-        TODO("not implemented")
+    override fun showLoadingIndicator() {
+        progressBar.visibility = View.VISIBLE
     }
 
-    override fun hideProgressBar() {
-        TODO("not implemented")
+    override fun hideLoadingIndicator() {
+        progressBar.visibility = View.GONE
     }
 }
