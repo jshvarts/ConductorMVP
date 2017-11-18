@@ -1,7 +1,9 @@
 package com.jshvarts.conductormvp.data.room
 
-import com.jshvarts.conductormvp.model.Note
 import com.jshvarts.conductormvp.domain.NoteRepository
+import com.jshvarts.conductormvp.model.Note
+import io.reactivex.Maybe
+import io.reactivex.Single
 
 /**
  * Room implementation of {@link NoteRepository}.
@@ -15,7 +17,13 @@ class RoomNoteRepository(private val noteDao: RoomNoteDao,
 
     override fun delete(note: Note) = noteDao.delete(mapper.toEntity(note))
 
-    override fun findNoteById(id: Long): Note = noteDao.findNoteById(id).run(mapper::fromEntity)
+    override fun findNoteById(id: Long): Maybe<Note> {
+        return noteDao.findNoteById(id)
+                .map { entity -> mapper.fromEntity(entity) }
+    }
 
-    override fun getAllNotes(): List<Note> = noteDao.getAllNotes().map(mapper::fromEntity)
+    override fun getAllNotes(): Single<List<Note>> {
+        return noteDao.getAllNotes()
+                .map { it.map(mapper::fromEntity) }
+    }
 }

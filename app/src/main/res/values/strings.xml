@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ConductorMVP</string>
+    <string name="notes_load_error">Unable to load notes</string>
+    <string name="note_detail_load_error">Unable to load note detail</string>
 </resources>

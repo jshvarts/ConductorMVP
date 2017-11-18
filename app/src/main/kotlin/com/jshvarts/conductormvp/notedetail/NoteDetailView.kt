@@ -2,6 +2,7 @@ package com.jshvarts.conductormvp.notedetail
 
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import butterknife.BindView
 import com.jshvarts.conductormvp.R
 import com.jshvarts.conductormvp.app.NotesApp
@@ -42,7 +43,7 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
     }
 
     override fun onUnableToLoadNote() {
-        TODO("not implemented")
+        Toast.makeText(this.applicationContext, R.string.note_detail_load_error, Toast.LENGTH_LONG).show()
     }
 
     override fun showProgressBar() {

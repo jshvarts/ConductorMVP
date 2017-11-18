@@ -1,12 +1,9 @@
 package com.jshvarts.conductormvp.data.room
 
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.OnConflictStrategy
-import android.arch.persistence.room.Update
-import android.arch.persistence.room.Delete
-import android.arch.persistence.room.Query
+import android.arch.persistence.room.*
 import com.jshvarts.conductormvp.data.NoteDao
+import io.reactivex.Maybe
+import io.reactivex.Single
 
 @Dao
 interface RoomNoteDao : NoteDao {
@@ -20,8 +17,8 @@ interface RoomNoteDao : NoteDao {
     fun delete(note: NoteEntity)
 
     @Query("SELECT * FROM notes WHERE id = :id")
-    fun findNoteById(id: Long): NoteEntity
+    fun findNoteById(id: Long): Maybe<NoteEntity>
 
     @Query("SELECT * FROM notes ORDER BY timestamp DESC")
-    fun getAllNotes(): List<NoteEntity>
+    fun getAllNotes(): Single<List<NoteEntity>>
 }

@@ -1,6 +1,8 @@
 package com.jshvarts.conductormvp.domain
 
 import com.jshvarts.conductormvp.model.Note
+import io.reactivex.Maybe
+import io.reactivex.Single
 
 /**
  * Repository interface that all DataStore implementations should implement.
@@ -12,7 +14,7 @@ interface NoteRepository {
 
     fun delete(note: Note)
 
-    fun findNoteById(id: Long): Note
+    fun findNoteById(id: Long): Maybe<Note>
 
-    fun getAllNotes(): List<Note>
+    fun getAllNotes(): Single<List<Note>>
 }
