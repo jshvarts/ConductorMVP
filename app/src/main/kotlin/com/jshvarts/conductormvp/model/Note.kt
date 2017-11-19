@@ -22,5 +22,5 @@ data class Note(
         PaperParcelNote.writeToParcel(this, dest, flags)
     }
 
-    fun isValid(): Boolean = noteText.isNotEmpty() && noteText.isNotBlank() && noteText.length > 3
+    fun isValid(): Boolean = noteText.trim().length > 3
 }
