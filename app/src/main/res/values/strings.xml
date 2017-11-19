@@ -2,7 +2,14 @@
     <string name="app_name">ConductorMVP</string>
     <string name="notes_load_error">Unable to load notes</string>
     <string name="note_detail_load_error">Unable to load note detail</string>
+    <string name="note_detail_close_button_text">close</string>
+    <string name="note_detail_edit_note_button_text">edit</string>
     <string name="add_note_hint">add a note</string>
     <string name="note_add_success">Note added successfully</string>
     <string name="note_add_validation_failed">Note validation failed</string>
+    <string name="edit_note_hint">edit note</string>
+    <string name="note_edit_success">Note updated successfully</string>
+    <string name="note_edit_validation_failed">Note validation failed</string>
+    <string name="note_edit_lookup_failed">Note lookup failed</string>
+    <string name="note_edit_failed">Note update failed</string>
 </resources>

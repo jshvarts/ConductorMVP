@@ -13,6 +13,8 @@ interface NoteDetailContract {
         fun onUnableToLoadNote()
         fun showLoadingIndicator()
         fun hideLoadingIndicator()
+        fun onCloseNoteButtonClicked()
+        fun onEditNoteButtonClicked()
     }
 
     interface Presenter : BasePresenter<NoteDetailView> {

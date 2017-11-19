@@ -5,7 +5,11 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import butterknife.BindView
+import butterknife.OnClick
+import com.bluelinelabs.conductor.RouterTransaction
+import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import com.jshvarts.conductormvp.R
+import com.jshvarts.conductormvp.addnote.EditNoteView
 import com.jshvarts.conductormvp.app.NotesApp
 import com.jshvarts.conductormvp.model.Note
 import com.jshvarts.conductormvp.mvp.BaseView
@@ -36,10 +40,24 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
                 .build()
                 .inject(this)
 
-        val noteId = args.getLong(EXTRA_NOTE_ID)
-
         presenter.attachView(this)
-        presenter.loadNote(noteId)
+        presenter.loadNote(getCurrentNoteId())
+    }
+
+    @OnClick(R.id.note_detail_close_button)
+    override fun onCloseNoteButtonClicked() {
+        router.popCurrentController()
+    }
+
+    @OnClick(R.id.edit_note_button)
+    override fun onEditNoteButtonClicked() {
+        val editNoteView = EditNoteView().apply {
+            args.putLong(EditNoteView.EXTRA_NOTE_ID, getCurrentNoteId())
+        }
+
+        router.pushController(RouterTransaction.with(editNoteView)
+                .pushChangeHandler(FadeChangeHandler())
+                .popChangeHandler(FadeChangeHandler()))
     }
 
     override fun displayNote(note: Note) {
@@ -57,4 +75,6 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
     override fun hideLoadingIndicator() {
         progressBar.visibility = View.GONE
     }
+
+    private fun getCurrentNoteId() = args.getLong(EXTRA_NOTE_ID)
 }

@@ -28,6 +28,7 @@ class AddNotePresenter @Inject constructor(private val repository: NoteRepositor
             view.onNoteValidationFailed()
             return
         }
-        repository.add(note).apply { view.onNoteAddSuccess() }
+        repository.add(note)
+        view.onNoteAddSuccess()
     }
 }
