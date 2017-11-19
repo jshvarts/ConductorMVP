@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.Toast
 import butterknife.BindView
+import butterknife.OnClick
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import com.jshvarts.conductormvp.R
@@ -52,7 +53,7 @@ class NotesView : BaseView(), NotesContract.View {
         Toast.makeText(this.applicationContext, R.string.notes_load_error, Toast.LENGTH_LONG).show()
     }
 
-    override fun getLayoutId() = R.layout.notes_recycler_view
+    override fun getLayoutId() = R.layout.notes_view
 
     private fun initRecyclerView(context: Context) {
         recyclerView.layoutManager = LinearLayoutManager(context)
@@ -68,5 +69,10 @@ class NotesView : BaseView(), NotesContract.View {
         router.pushController(RouterTransaction.with(noteDetailView)
                 .pushChangeHandler(FadeChangeHandler())
                 .popChangeHandler(FadeChangeHandler()))
+    }
+
+    @OnClick(R.id.fab)
+    override fun onFabClicked() {
+        Toast.makeText(this.applicationContext, "show add Note view", Toast.LENGTH_LONG).show()
     }
 }

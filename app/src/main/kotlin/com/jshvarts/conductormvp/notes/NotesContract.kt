@@ -11,6 +11,7 @@ interface NotesContract {
     interface View {
         fun displayNotes(notes: List<Note>)
         fun onUnableToLoadNotes()
+        fun onFabClicked()
     }
 
     interface Presenter : BasePresenter<NotesView> {
