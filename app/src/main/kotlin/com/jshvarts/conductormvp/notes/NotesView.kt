@@ -10,6 +10,7 @@ import butterknife.OnClick
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import com.jshvarts.conductormvp.R
+import com.jshvarts.conductormvp.addnote.AddNoteView
 import com.jshvarts.conductormvp.app.NotesApp
 import com.jshvarts.conductormvp.model.Note
 import com.jshvarts.conductormvp.mvp.BaseView
@@ -73,6 +74,8 @@ class NotesView : BaseView(), NotesContract.View {
 
     @OnClick(R.id.fab)
     override fun onFabClicked() {
-        Toast.makeText(this.applicationContext, "show add Note view", Toast.LENGTH_LONG).show()
+        router.pushController(RouterTransaction.with(AddNoteView())
+                .pushChangeHandler(FadeChangeHandler())
+                .popChangeHandler(FadeChangeHandler()))
     }
 }

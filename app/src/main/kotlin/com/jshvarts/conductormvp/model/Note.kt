@@ -21,4 +21,6 @@ data class Note(
     override fun writeToParcel(dest: Parcel, flags: Int) {
         PaperParcelNote.writeToParcel(this, dest, flags)
     }
+
+    fun isValid(): Boolean = noteText.isNotEmpty() && noteText.isNotBlank() && noteText.length > 3
 }
