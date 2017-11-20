@@ -3,15 +3,14 @@ package com.jshvarts.conductormvp.notedetail
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
-import android.widget.Toast
 import butterknife.BindView
 import butterknife.OnClick
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import com.jshvarts.conductormvp.R
-import com.jshvarts.conductormvp.editnote.EditNoteView
 import com.jshvarts.conductormvp.app.NotesApp
 import com.jshvarts.conductormvp.domain.model.Note
+import com.jshvarts.conductormvp.editnote.EditNoteView
 import com.jshvarts.conductormvp.mvp.BaseView
 import javax.inject.Inject
 
@@ -70,7 +69,7 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
     }
 
     override fun onUnableToLoadNote() {
-        Toast.makeText(this.applicationContext, R.string.note_detail_load_error, Toast.LENGTH_LONG).show()
+        showMessage(R.string.note_detail_load_error)
     }
 
     override fun showLoadingIndicator() {
@@ -82,12 +81,12 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
     }
 
     override fun onDeleteNoteSuccess() {
-        Toast.makeText(this.applicationContext, R.string.note_detail_delete_note_success, Toast.LENGTH_LONG).show()
+        showMessage(R.string.note_detail_delete_note_success)
         router.popCurrentController()
     }
 
     override fun onDeleteNoteFailed() {
-        Toast.makeText(this.applicationContext, R.string.note_detail_delete_note_failed, Toast.LENGTH_LONG).show()
+        showMessage(R.string.note_detail_delete_note_failed)
     }
 
     private fun getCurrentNoteId() = args.getLong(EXTRA_NOTE_ID)

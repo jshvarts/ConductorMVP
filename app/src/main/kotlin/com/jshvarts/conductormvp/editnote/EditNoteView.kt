@@ -3,7 +3,6 @@ package com.jshvarts.conductormvp.editnote
 import android.support.design.widget.TextInputEditText
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.Toast
 import butterknife.BindView
 import butterknife.OnEditorAction
 import com.jshvarts.conductormvp.R
@@ -45,15 +44,16 @@ class EditNoteView : BaseView(), EditNoteContract.View {
     }
 
     override fun onNoteEditSuccess() {
+        showMessage(R.string.note_edit_success)
         router.popCurrentController()
     }
 
     override fun onNoteEditFailed() {
-        Toast.makeText(this.applicationContext, R.string.note_edit_failed, Toast.LENGTH_LONG).show()
+        showMessage(R.string.note_edit_failed)
     }
 
     override fun onNoteLookupFailed() {
-        Toast.makeText(this.applicationContext, R.string.note_edit_lookup_failed, Toast.LENGTH_LONG).show()
+        showMessage(R.string.note_edit_lookup_failed)
     }
 
     override fun onDetach(view: View) {
@@ -74,6 +74,6 @@ class EditNoteView : BaseView(), EditNoteContract.View {
     }
 
     override fun onNoteValidationFailed() {
-        Toast.makeText(this.applicationContext, R.string.note_add_validation_failed, Toast.LENGTH_LONG).show()
+        showMessage(R.string.note_add_validation_failed)
     }
 }

@@ -37,13 +37,20 @@ class EditNotePresenter @Inject constructor(private val repository: NoteReposito
                 view.onNoteValidationFailed()
                 return
             }
-            repository.update(this)
+            disposables.add(repository.update(this)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(view::onNoteEditSuccess, { e -> showUnableToEditNoteError(e) } ))
         }
-        view.onNoteEditSuccess()
     }
 
     private fun showUnableToLoadNoteError(error: Throwable) {
         Timber.e(error)
         view.onNoteLookupFailed()
+    }
+
+    private fun showUnableToEditNoteError(error: Throwable) {
+        Timber.e(error)
+        view.onNoteEditFailed()
     }
 }

@@ -2,6 +2,7 @@ package com.jshvarts.conductormvp.data.room
 
 import com.jshvarts.conductormvp.domain.NoteRepository
 import com.jshvarts.conductormvp.domain.model.Note
+import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single
 
@@ -11,11 +12,11 @@ import io.reactivex.Single
 class RoomNoteRepository(private val noteDao: RoomNoteDao,
                          private val mapper: RoomNoteModelMapper) : NoteRepository {
 
-    override fun add(note: Note) = noteDao.add(mapper.toEntity(note))
+    override fun add(note: Note): Completable = Completable.fromAction { noteDao.add(mapper.toEntity(note)) }
 
-    override fun update(note: Note) = noteDao.update(mapper.toEntity(note))
+    override fun update(note: Note): Completable = Completable.fromAction { noteDao.update(mapper.toEntity(note)) }
 
-    override fun delete(note: Note) = noteDao.delete(mapper.toEntity(note))
+    override fun delete(note: Note): Completable = Completable.fromAction { noteDao.delete(mapper.toEntity(note)) }
 
     override fun findNoteById(id: Long): Maybe<Note> {
         return noteDao.findNoteById(id)

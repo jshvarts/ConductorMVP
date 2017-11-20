@@ -9,6 +9,7 @@
     <string name="note_detail_delete_note_failed">Note deletion failed</string>
     <string name="add_note_hint">add a note</string>
     <string name="note_add_success">Note added successfully</string>
+    <string name="note_add_failed">Unable to add note</string>
     <string name="note_add_validation_failed">Note validation failed</string>
     <string name="edit_note_hint">edit note</string>
     <string name="note_edit_success">Note updated successfully</string>

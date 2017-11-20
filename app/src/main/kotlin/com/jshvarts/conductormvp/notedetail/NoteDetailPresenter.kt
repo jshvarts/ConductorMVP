@@ -24,8 +24,10 @@ class NoteDetailPresenter @Inject constructor(private val repository: NoteReposi
     }
 
     override fun deleteNote(id: Long) {
-        repository.delete(Note(id))
-        view.onDeleteNoteSuccess()
+        disposables.add(repository.delete(Note(id))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(view::onDeleteNoteSuccess, { e -> showUnableToDeleteNoteError(e) } ))
     }
 
     override fun detachView() {
@@ -41,5 +43,10 @@ class NoteDetailPresenter @Inject constructor(private val repository: NoteReposi
     private fun showUnableToLoadNoteError(error: Throwable) {
         Timber.e(error)
         view.onUnableToLoadNote()
+    }
+
+    private fun showUnableToDeleteNoteError(error: Throwable) {
+        Timber.e(error)
+        view.onDeleteNoteFailed()
     }
 }

@@ -2,7 +2,9 @@ package com.jshvarts.conductormvp.addnote
 
 import com.jshvarts.conductormvp.domain.NoteRepository
 import com.jshvarts.conductormvp.domain.model.Note
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -28,8 +30,15 @@ class AddNotePresenter @Inject constructor(private val repository: NoteRepositor
                 view.onNoteValidationFailed()
                 return
             }
-            repository.add(this)
+            disposables.add(repository.update(this)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(view::onNoteAddSuccess, { e -> showUnableToAddNoteError(e) } ))
         }
-        view.onNoteAddSuccess()
+    }
+
+    private fun showUnableToAddNoteError(error: Throwable) {
+        Timber.e(error)
+        view.onNoteAddFailed()
     }
 }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import butterknife.ButterKnife
 import com.bluelinelabs.conductor.Controller
 
@@ -23,5 +24,9 @@ abstract class BaseView : Controller() {
     protected fun View.hideKeyboard() {
         val inputMethodManager = applicationContext?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(this.windowToken, 0)
+    }
+
+    protected fun showMessage(@IdRes msgResId: Int) {
+        Toast.makeText(this.applicationContext, msgResId, Toast.LENGTH_SHORT).show()
     }
 }

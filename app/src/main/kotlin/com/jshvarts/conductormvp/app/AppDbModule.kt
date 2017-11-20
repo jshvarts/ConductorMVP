@@ -18,7 +18,6 @@ class AppDbModule {
     @Provides
     fun provideNoteDatabase(context: Context): NoteDatabase =
             Room.databaseBuilder(context, NoteDatabase::class.java, "notesdb")
-                    .allowMainThreadQueries()
                     .build()
 
     @Singleton

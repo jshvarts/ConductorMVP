@@ -3,7 +3,6 @@ package com.jshvarts.conductormvp.addnote
 import android.support.design.widget.TextInputEditText
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.Toast
 import butterknife.BindView
 import butterknife.OnEditorAction
 import com.jshvarts.conductormvp.R
@@ -48,15 +47,15 @@ class AddNoteView : BaseView(), AddNoteContract.View {
     }
 
     override fun onNoteAddSuccess() {
-        Toast.makeText(this.applicationContext, R.string.note_add_success, Toast.LENGTH_LONG).show()
+        showMessage(R.string.note_add_success)
         router.popCurrentController()
     }
 
     override fun onNoteValidationFailed() {
-        Toast.makeText(this.applicationContext, R.string.note_add_validation_failed, Toast.LENGTH_LONG).show()
+        showMessage(R.string.note_add_validation_failed)
     }
 
     override fun onNoteAddFailed() {
-        TODO("not implemented")
+        showMessage(R.string.note_add_failed)
     }
 }

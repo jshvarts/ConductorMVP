@@ -4,7 +4,6 @@ import android.content.Context
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import android.widget.Toast
 import butterknife.BindView
 import butterknife.OnClick
 import com.bluelinelabs.conductor.RouterTransaction
@@ -51,7 +50,7 @@ class NotesView : BaseView(), NotesContract.View {
     }
 
     override fun onUnableToLoadNotes() {
-        Toast.makeText(this.applicationContext, R.string.notes_load_error, Toast.LENGTH_LONG).show()
+        showMessage(R.string.notes_load_error)
     }
 
     override fun getLayoutId() = R.layout.notes_view
