@@ -15,12 +15,12 @@ class EditNotePresenter @Inject constructor(private val repository: NoteReposito
     private val disposables: CompositeDisposable = CompositeDisposable()
 
     override fun detachView() {
-        Timber.d("NotesPresenter::detachView")
+        Timber.d("EditNotePresenter::detachView")
         disposables.clear()
     }
 
     override fun attachView(view: EditNoteView) {
-        Timber.d("NotesPresenter::attachView")
+        Timber.d("EditNotePresenter::attachView")
         this.view = view
     }
 
@@ -32,16 +32,15 @@ class EditNotePresenter @Inject constructor(private val repository: NoteReposito
     }
 
     override fun editNote(id: Long, noteText: String) {
-        Note(id, noteText).apply {
-            if (!isValid()) {
-                view.onNoteValidationFailed()
-                return
-            }
-            disposables.add(repository.update(this)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(view::onNoteEditSuccess, { e -> showUnableToEditNoteError(e) } ))
+        val note = Note(id, noteText)
+        if (!note.isValid()) {
+            view.onNoteValidationFailed()
+            return
         }
+        disposables.add(repository.update(note)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(view::onNoteEditSuccess, this::showUnableToEditNoteError))
     }
 
     private fun showUnableToLoadNoteError(error: Throwable) {

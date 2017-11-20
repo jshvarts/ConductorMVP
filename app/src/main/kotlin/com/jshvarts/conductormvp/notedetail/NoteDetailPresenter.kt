@@ -14,6 +14,16 @@ class NoteDetailPresenter @Inject constructor(private val repository: NoteReposi
 
     private val disposables: CompositeDisposable = CompositeDisposable()
 
+    override fun detachView() {
+        Timber.d("NoteDetailPresenter::detachView")
+        disposables.clear()
+    }
+
+    override fun attachView(view: NoteDetailView) {
+        Timber.d("NoteDetailPresenter::attachView")
+        this.view = view
+    }
+
     override fun loadNote(id: Long) {
         disposables.add(repository.findNoteById(id)
                 .subscribeOn(Schedulers.io())
@@ -27,17 +37,7 @@ class NoteDetailPresenter @Inject constructor(private val repository: NoteReposi
         disposables.add(repository.delete(Note(id))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(view::onDeleteNoteSuccess, { e -> showUnableToDeleteNoteError(e) } ))
-    }
-
-    override fun detachView() {
-        Timber.d("NoteDetailPresenter::detachView")
-        disposables.clear()
-    }
-
-    override fun attachView(view: NoteDetailView) {
-        Timber.d("NoteDetailPresenter::attachView")
-        this.view = view
+                .subscribe(view::onDeleteNoteSuccess, this::showUnableToDeleteNoteError))
     }
 
     private fun showUnableToLoadNoteError(error: Throwable) {
