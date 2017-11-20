@@ -1,7 +1,7 @@
-package com.jshvarts.conductormvp.addnote
+package com.jshvarts.conductormvp.editnote
 
 import com.jshvarts.conductormvp.domain.NoteRepository
-import com.jshvarts.conductormvp.model.Note
+import com.jshvarts.conductormvp.domain.model.Note
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -32,12 +32,13 @@ class EditNotePresenter @Inject constructor(private val repository: NoteReposito
     }
 
     override fun editNote(id: Long, noteText: String) {
-        val note = Note(id, noteText)
-        if (!note.isValid()) {
-            view.onNoteValidationFailed()
-            return
+        Note(id, noteText).apply {
+            if (!isValid()) {
+                view.onNoteValidationFailed()
+                return
+            }
+            repository.update(this)
         }
-        repository.update(note)
         view.onNoteEditSuccess()
     }
 

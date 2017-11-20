@@ -1,4 +1,4 @@
-package com.jshvarts.conductormvp.model
+package com.jshvarts.conductormvp.domain.model
 
 import android.os.Parcel
 import android.os.Parcelable
@@ -9,9 +9,10 @@ import paperparcel.PaperParcel
  */
 @PaperParcel
 data class Note(
-        val id: Long,
-        val noteText: String
+        val id: Long = 0,
+        val noteText: String = ""
 ) : Parcelable {
+
     companion object {
         @JvmField val CREATOR = PaperParcelNote.CREATOR
     }

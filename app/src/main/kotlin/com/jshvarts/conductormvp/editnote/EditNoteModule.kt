@@ -1,4 +1,4 @@
-package com.jshvarts.conductormvp.addnote
+package com.jshvarts.conductormvp.editnote
 
 import com.jshvarts.conductormvp.app.PerScreen
 import com.jshvarts.conductormvp.domain.NoteRepository

@@ -1,7 +1,7 @@
 package com.jshvarts.conductormvp.data.room
 
-import com.jshvarts.conductormvp.model.Note
-import com.jshvarts.conductormvp.data.NoteModelMapper
+import com.jshvarts.conductormvp.domain.model.Note
+import com.jshvarts.conductormvp.domain.NoteModelMapper
 
 /**
  * Maps between Room database entity and model.

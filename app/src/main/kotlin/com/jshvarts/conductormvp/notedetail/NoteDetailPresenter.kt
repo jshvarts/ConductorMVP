@@ -1,6 +1,7 @@
 package com.jshvarts.conductormvp.notedetail
 
 import com.jshvarts.conductormvp.domain.NoteRepository
+import com.jshvarts.conductormvp.domain.model.Note
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -20,6 +21,11 @@ class NoteDetailPresenter @Inject constructor(private val repository: NoteReposi
                 .doOnSubscribe { view.showLoadingIndicator() }
                 .doFinally { view.hideLoadingIndicator() }
                 .subscribe(view::displayNote, this::showUnableToLoadNoteError))
+    }
+
+    override fun deleteNote(id: Long) {
+        repository.delete(Note(id))
+        view.onDeleteNoteSuccess()
     }
 
     override fun detachView() {

@@ -1,10 +1,10 @@
-package com.jshvarts.conductormvp.addnote
+package com.jshvarts.conductormvp.editnote
 
-import com.jshvarts.conductormvp.model.Note
+import com.jshvarts.conductormvp.domain.model.Note
 import com.jshvarts.conductormvp.mvp.BasePresenter
 
 /**
- * MVP Contract for Add a Note screen.
+ * MVP Contract for Edit a Note screen.
  */
 interface EditNoteContract {
 

@@ -9,9 +9,9 @@ import butterknife.OnClick
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import com.jshvarts.conductormvp.R
-import com.jshvarts.conductormvp.addnote.EditNoteView
+import com.jshvarts.conductormvp.editnote.EditNoteView
 import com.jshvarts.conductormvp.app.NotesApp
-import com.jshvarts.conductormvp.model.Note
+import com.jshvarts.conductormvp.domain.model.Note
 import com.jshvarts.conductormvp.mvp.BaseView
 import javax.inject.Inject
 
@@ -60,6 +60,11 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
                 .popChangeHandler(FadeChangeHandler()))
     }
 
+    @OnClick(R.id.delete_note_button)
+    override fun onDeleteNoteButtonClicked() {
+        presenter.deleteNote(getCurrentNoteId())
+    }
+
     override fun displayNote(note: Note) {
         noteText.text = note.noteText
     }
@@ -74,6 +79,15 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
 
     override fun hideLoadingIndicator() {
         progressBar.visibility = View.GONE
+    }
+
+    override fun onDeleteNoteSuccess() {
+        Toast.makeText(this.applicationContext, R.string.note_detail_delete_note_success, Toast.LENGTH_LONG).show()
+        router.popCurrentController()
+    }
+
+    override fun onDeleteNoteFailed() {
+        Toast.makeText(this.applicationContext, R.string.note_detail_delete_note_failed, Toast.LENGTH_LONG).show()
     }
 
     private fun getCurrentNoteId() = args.getLong(EXTRA_NOTE_ID)
