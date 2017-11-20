@@ -26,6 +26,7 @@ class EditNoteView : BaseView(), EditNoteContract.View {
     lateinit var note: Note
 
     override fun onAttach(view: View) {
+        super.onAttach(view)
 
         DaggerEditNoteComponent.builder()
                 .appComponent(NotesApp.component)
@@ -62,6 +63,8 @@ class EditNoteView : BaseView(), EditNoteContract.View {
     }
 
     override fun getLayoutId() = R.layout.edit_note
+
+    override fun getToolbarTitleId() = R.string.screen_title_edit_note
 
     @OnEditorAction(R.id.edit_note_edit_text)
     override fun onEditNoteAction(actionId: Int): Boolean {

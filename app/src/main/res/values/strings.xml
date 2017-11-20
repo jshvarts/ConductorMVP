@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">ConductorMVP</string>
+    <string name="screen_title_notes">Notes</string>
+    <string name="screen_title_note_detail">Note Detail</string>
+    <string name="screen_title_add_note">Add a Note</string>
+    <string name="screen_title_edit_note">Edit Note</string>
     <string name="notes_load_error">Unable to load notes</string>
     <string name="note_detail_load_error">Unable to load note detail</string>
-    <string name="note_detail_close_button_text">close</string>
     <string name="note_detail_edit_note_button_text">edit</string>
     <string name="note_detail_delete_note_button_text">delete</string>
     <string name="note_detail_delete_note_success">Note deleted successfully</string>

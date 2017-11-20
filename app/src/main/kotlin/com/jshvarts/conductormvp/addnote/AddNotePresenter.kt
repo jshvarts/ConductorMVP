@@ -30,7 +30,7 @@ class AddNotePresenter @Inject constructor(private val repository: NoteRepositor
                 view.onNoteValidationFailed()
                 return
             }
-            disposables.add(repository.update(this)
+            disposables.add(repository.add(this)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(view::onNoteAddSuccess, { e -> showUnableToAddNoteError(e) } ))

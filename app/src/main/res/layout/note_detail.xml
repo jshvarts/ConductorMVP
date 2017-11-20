@@ -23,17 +23,10 @@
             android:layout_marginTop="20dp">
 
             <Button
-                android:id="@+id/note_detail_close_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/note_detail_close_button_text" />
-
-            <Button
                 android:id="@+id/edit_note_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/note_detail_edit_note_button_text"
-                android:layout_marginLeft="25dp" />
+                android:text="@string/note_detail_edit_note_button_text" />
 
             <Button
                 android:id="@+id/delete_note_button"

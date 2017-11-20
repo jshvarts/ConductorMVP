@@ -27,6 +27,7 @@ class NotesView : BaseView(), NotesContract.View {
     private lateinit var recyclerViewAdapter: NotesAdapter
 
     override fun onAttach(view: View) {
+        super.onAttach(view)
 
         DaggerNotesComponent.builder()
                 .appComponent(NotesApp.component)
@@ -54,6 +55,8 @@ class NotesView : BaseView(), NotesContract.View {
     }
 
     override fun getLayoutId() = R.layout.notes_view
+
+    override fun getToolbarTitleId() = R.string.screen_title_notes
 
     private fun initRecyclerView(context: Context) {
         recyclerView.layoutManager = LinearLayoutManager(context)

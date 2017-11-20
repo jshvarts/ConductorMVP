@@ -9,8 +9,18 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import butterknife.ButterKnife
 import com.bluelinelabs.conductor.Controller
+import com.jshvarts.conductormvp.MainActivity
 
 abstract class BaseView : Controller() {
+
+    override fun onAttach(view: View) {
+        super.onAttach(view)
+
+        // re-consider implementation https://github.com/bluelinelabs/Conductor/issues/11
+        val activity = activity as MainActivity
+        activity.setToolbarTitle(getToolbarTitleId())
+        activity.enableUpArrow(router.backstackSize > 1)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         val view = inflater.inflate(getLayoutId(), container, false)
@@ -19,7 +29,10 @@ abstract class BaseView : Controller() {
     }
 
     @IdRes
-    abstract protected fun getLayoutId(): Int
+    protected abstract fun getLayoutId(): Int
+
+    @IdRes
+    protected abstract fun getToolbarTitleId(): Int
 
     protected fun View.hideKeyboard() {
         val inputMethodManager = applicationContext?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

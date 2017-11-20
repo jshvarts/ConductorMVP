@@ -19,6 +19,7 @@ class AddNoteView : BaseView(), AddNoteContract.View {
     lateinit var addNoteEditText: TextInputEditText
 
     override fun onAttach(view: View) {
+        super.onAttach(view)
 
         DaggerAddNoteComponent.builder()
                 .appComponent(NotesApp.component)
@@ -35,6 +36,8 @@ class AddNoteView : BaseView(), AddNoteContract.View {
     }
 
     override fun getLayoutId() = R.layout.add_note
+
+    override fun getToolbarTitleId() = R.string.screen_title_add_note
 
     @OnEditorAction(R.id.add_note_edit_text)
     override fun onAddNoteAction(actionId: Int): Boolean {

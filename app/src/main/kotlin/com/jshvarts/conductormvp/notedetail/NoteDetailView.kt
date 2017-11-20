@@ -31,7 +31,10 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
 
     override fun getLayoutId() = R.layout.note_detail
 
+    override fun getToolbarTitleId() = R.string.screen_title_note_detail
+
     override fun onAttach(view: View) {
+        super.onAttach(view)
 
         DaggerNoteDetailComponent.builder()
                 .appComponent(NotesApp.component)
@@ -41,11 +44,6 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
 
         presenter.attachView(this)
         presenter.loadNote(getCurrentNoteId())
-    }
-
-    @OnClick(R.id.note_detail_close_button)
-    override fun onCloseNoteButtonClicked() {
-        router.popCurrentController()
     }
 
     @OnClick(R.id.edit_note_button)
