@@ -40,7 +40,6 @@ dependencies {
     implementation "android.arch.persistence.room:rxjava2:$androidArchVersion"
     kapt "android.arch.persistence.room:compiler:$androidArchVersion"
 
-    implementation 'com.android.support:appcompat-v7:26.1.0'
     testImplementation 'junit:junit:4.12'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
