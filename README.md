@@ -16,9 +16,9 @@ Single Activity Todo app using [Conductor](https://github.com/bluelinelabs/Condu
 
 The app is configured as multi-project Gradle setup which improves build and testing speed in addition to providing clear isolation between the components of the app:
 
-* **domain** module contains business logic layer
-* **data** module contains implementation of the business logic layer including *Model*
-* **app** module contains *View* and *Presentation* layers as well as DI setup that glues everything together.
+* **domain** module contains business logic/use-cases/repository interfaces as well as *Model*
+* **data** module contains implementation of the **domain** layer abstractions
+* **app** module contains *View* and *Presentation* layers as well as DI setup that glues everything together
 
 ![Relationship between modules](images/modules.png?raw=true)
 
