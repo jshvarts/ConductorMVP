@@ -3,13 +3,12 @@
 buildscript {
     ext {
         kotlin_version = '1.1.60'
-        kotlin_version = '1.1.51'
         rxJavaVersion = "2.1.6"
         rxAndroidVersion = "2.0.1"
 
         libs = [
-                rxJava   : ('io.reactivex.rxjava2:rxjava:' + rxJavaVersion),
-                rxAndroid: ('io.reactivex.rxjava2:rxandroid:' + rxAndroidVersion)
+                rxJava    : ('io.reactivex.rxjava2:rxjava:' + rxJavaVersion),
+                rxAndroid : ('io.reactivex.rxjava2:rxandroid:' + rxAndroidVersion)
         ]
     }
 
