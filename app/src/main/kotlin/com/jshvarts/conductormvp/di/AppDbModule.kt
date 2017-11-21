@@ -1,7 +1,10 @@
 package com.jshvarts.conductormvp.di
 
 import android.content.Context
-import com.jshvarts.notedata.*
+import com.jshvarts.notedata.NoteDaoImpl
+import com.jshvarts.notedata.NoteModelMapperImpl
+import com.jshvarts.notedata.NoteRepositoryImpl
+import com.jshvarts.notedata.createNoteDao
 import com.jshvarts.notedomain.NoteRepository
 import dagger.Module
 import dagger.Provides
@@ -12,7 +15,7 @@ class AppDbModule {
 
     @Singleton
     @Provides
-    fun provideNoteDao(context: Context): NoteDaoImpl = createNoteDao(context)
+    fun provideNoteDao(context: Context) = createNoteDao(context)
 
     @Singleton
     @Provides

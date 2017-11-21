@@ -1,7 +1,7 @@
 package com.jshvarts.notedomain
 
 /**
- * Data holder used by View layer.
+ * Represents Data model
  */
 data class Note(
         val id: Long = 0,

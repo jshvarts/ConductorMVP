@@ -5,7 +5,7 @@ import io.reactivex.Maybe
 import io.reactivex.Single
 
 /**
- * Repository interface that all DataStore implementations should implement.
+ * Repository interface to be implemented by Data layer.
  */
 interface NoteRepository {
     fun add(note: Note): Completable
