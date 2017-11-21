@@ -1,7 +1,7 @@
-package com.jshvarts.conductormvp.data.room
+package com.jshvarts.notedata
 
-import com.jshvarts.conductormvp.domain.NoteRepository
-import com.jshvarts.conductormvp.domain.model.Note
+import com.jshvarts.notedomain.NoteRepository
+import com.jshvarts.notedomain.model.Note
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single

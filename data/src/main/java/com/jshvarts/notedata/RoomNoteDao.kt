@@ -1,7 +1,7 @@
-package com.jshvarts.conductormvp.data.room
+package com.jshvarts.notedata
 
 import android.arch.persistence.room.*
-import com.jshvarts.conductormvp.domain.NoteDao
+import com.jshvarts.notedomain.NoteDao
 import io.reactivex.Maybe
 import io.reactivex.Single
 

@@ -1,6 +1,6 @@
 package com.jshvarts.conductormvp.editnote
 
-import com.jshvarts.conductormvp.domain.model.Note
+import com.jshvarts.notedomain.model.Note
 import com.jshvarts.conductormvp.mvp.MvpView
 
 /**

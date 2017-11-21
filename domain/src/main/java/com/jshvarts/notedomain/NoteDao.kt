@@ -1,4 +1,4 @@
-package com.jshvarts.conductormvp.domain
+package com.jshvarts.notedomain
 
 /**
  * Marker interface to satisfy Generics for NoteRepository.

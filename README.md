@@ -4,14 +4,21 @@
 
 Single Activity Todo app using [Conductor](https://github.com/bluelinelabs/Conductor) implementing MVP pattern (each `Controller` is a View).
 
-## Libraries
+## Main Libraries
 
 * Conductor
 * Room (with fully reactive data types)
 * RxJava 2 and RxAndroid
 * Dagger 2 with custom scopes
 * ButterKnife for view binding
-* Travis CI
+
+## Multi-Project setup
+
+The app is configured as multi-project Gradle setup which improves build and testing speed in addition to providing clear isolation between the components of the app:
+
+* **domain** module contains business logic layer
+* **data** module contains implementation of the business logic layer including *Model*
+* **app** module contains *View* and *Presentation* layers as well as DI setup that glues everything together.
 
 ## Screenshots
 

@@ -1,6 +1,6 @@
-package com.jshvarts.conductormvp.domain
+package com.jshvarts.notedomain
 
-import com.jshvarts.conductormvp.domain.model.Note
+import com.jshvarts.notedomain.model.Note
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single

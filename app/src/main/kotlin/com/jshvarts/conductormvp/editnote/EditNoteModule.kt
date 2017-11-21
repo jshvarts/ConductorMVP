@@ -1,7 +1,7 @@
 package com.jshvarts.conductormvp.editnote
 
 import com.jshvarts.conductormvp.app.PerScreen
-import com.jshvarts.conductormvp.domain.NoteRepository
+import com.jshvarts.notedomain.NoteRepository
 import dagger.Module
 import dagger.Provides
 

@@ -1,7 +1,7 @@
 package com.jshvarts.conductormvp.notedetail
 
-import com.jshvarts.conductormvp.domain.model.Note
 import com.jshvarts.conductormvp.mvp.MvpView
+import com.jshvarts.notedomain.model.Note
 
 /**
  * MVP Contract for displaying note details and offering actions such as edit and delete.

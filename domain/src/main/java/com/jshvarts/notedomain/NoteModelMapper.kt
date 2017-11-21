@@ -1,4 +1,4 @@
-package com.jshvarts.conductormvp.domain
+package com.jshvarts.notedomain
 
 /**
  * Data mapper used to map database entities to model classes and vice versa.

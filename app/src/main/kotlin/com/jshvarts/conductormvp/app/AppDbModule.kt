@@ -1,12 +1,8 @@
 package com.jshvarts.conductormvp.app
 
-import android.arch.persistence.room.Room
 import android.content.Context
-import com.jshvarts.conductormvp.domain.NoteRepository
-import com.jshvarts.conductormvp.data.room.RoomNoteDao
-import com.jshvarts.conductormvp.data.room.NoteDatabase
-import com.jshvarts.conductormvp.data.room.RoomNoteModelMapper
-import com.jshvarts.conductormvp.data.room.RoomNoteRepository
+import com.jshvarts.notedata.*
+import com.jshvarts.notedomain.NoteRepository
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -16,13 +12,7 @@ class AppDbModule {
 
     @Singleton
     @Provides
-    fun provideNoteDatabase(context: Context): NoteDatabase =
-            Room.databaseBuilder(context, NoteDatabase::class.java, "notesdb")
-                    .build()
-
-    @Singleton
-    @Provides
-    fun provideNoteDao(database: NoteDatabase) = database.noteDao()
+    fun provideNoteDao(context: Context): RoomNoteDao = createNoteDao(context)
 
     @Singleton
     @Provides
