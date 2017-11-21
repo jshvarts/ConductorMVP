@@ -2,6 +2,8 @@ package com.jshvarts.conductormvp.mvp
 
 import android.content.Context
 import android.support.annotation.IdRes
+import android.support.annotation.LayoutRes
+import android.support.annotation.StringRes
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,10 +30,10 @@ abstract class BaseView : Controller() {
         return view
     }
 
-    @IdRes
+    @LayoutRes
     protected abstract fun getLayoutId(): Int
 
-    @IdRes
+    @StringRes
     protected abstract fun getToolbarTitleId(): Int
 
     protected fun View.hideKeyboard() {
