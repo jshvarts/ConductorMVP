@@ -9,8 +9,8 @@ import io.reactivex.Single
 /**
  * Room implementation of {@link NoteRepository}.
  */
-class RoomNoteRepository(private val noteDao: RoomNoteDao,
-                         private val mapper: RoomNoteModelMapper) : NoteRepository {
+class NoteRepositoryImpl(private val noteDao: NoteDaoImpl,
+                         private val mapper: NoteModelMapperImpl) : NoteRepository {
 
     override fun add(note: Note): Completable = Completable.fromAction { noteDao.add(mapper.toEntity(note)) }
 

@@ -1,4 +1,4 @@
-package com.jshvarts.conductormvp.app
+package com.jshvarts.conductormvp.di
 
 import android.app.Application
 import dagger.Module

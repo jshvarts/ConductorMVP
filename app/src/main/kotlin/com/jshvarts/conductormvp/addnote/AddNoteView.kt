@@ -6,7 +6,7 @@ import android.view.inputmethod.EditorInfo
 import butterknife.BindView
 import butterknife.OnEditorAction
 import com.jshvarts.conductormvp.R
-import com.jshvarts.conductormvp.app.NotesApp
+import com.jshvarts.conductormvp.NotesApp
 import com.jshvarts.conductormvp.mvp.BaseView
 import javax.inject.Inject
 

@@ -1,7 +1,7 @@
 package com.jshvarts.conductormvp.notedetail
 
-import com.jshvarts.conductormvp.app.AppComponent
-import com.jshvarts.conductormvp.app.PerScreen
+import com.jshvarts.conductormvp.di.AppComponent
+import com.jshvarts.conductormvp.di.PerScreen
 import dagger.Component
 
 @PerScreen

@@ -6,7 +6,7 @@ import io.reactivex.Maybe
 import io.reactivex.Single
 
 @Dao
-interface RoomNoteDao : NoteDao {
+interface NoteDaoImpl : NoteDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun add(note: NoteEntity)
 

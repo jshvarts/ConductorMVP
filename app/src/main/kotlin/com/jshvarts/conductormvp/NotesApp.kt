@@ -1,7 +1,8 @@
-package com.jshvarts.conductormvp.app
+package com.jshvarts.conductormvp
 
 import android.app.Application
-import com.jshvarts.conductormvp.BuildConfig
+import com.jshvarts.conductormvp.di.AppComponent
+import com.jshvarts.conductormvp.di.DaggerAppComponent
 import timber.log.Timber
 
 class NotesApp : Application() {

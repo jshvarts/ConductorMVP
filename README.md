@@ -22,7 +22,7 @@ The app is configured as multi-project Gradle setup which improves build and tes
 
 ![Relationship between modules](images/modules.png?raw=true)
 
-This setup enables you to swap your backend implementation (for instance, migrate to Firebase or Realm) simply by adding a new (or replacing existing) **data** layer module and modifying a dependency in the **app** module. 
+This setup enables you to swap your backend implementation (for instance, migrate to Firebase or Realm) simply by replacing your **data** layer module and modifying a dependency in the **app** module. 
 If the data layer changes, domain layer is not affected.
 
 ## Screenshots

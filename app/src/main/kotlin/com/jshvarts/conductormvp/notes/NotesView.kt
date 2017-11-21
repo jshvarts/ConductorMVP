@@ -10,7 +10,7 @@ import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import com.jshvarts.conductormvp.R
 import com.jshvarts.conductormvp.addnote.AddNoteView
-import com.jshvarts.conductormvp.app.NotesApp
+import com.jshvarts.conductormvp.NotesApp
 import com.jshvarts.notedomain.model.Note
 import com.jshvarts.conductormvp.mvp.BaseView
 import com.jshvarts.conductormvp.notedetail.NoteDetailView
