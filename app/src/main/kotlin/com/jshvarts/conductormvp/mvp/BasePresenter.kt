@@ -1,6 +1,18 @@
 package com.jshvarts.conductormvp.mvp
 
-interface BasePresenter<in T : BaseView> {
-    fun detachView()
-    fun attachView(view: T)
+import io.reactivex.disposables.CompositeDisposable
+
+abstract class BasePresenter<V : MvpView> {
+
+    protected val disposables: CompositeDisposable = CompositeDisposable()
+    protected var view: V? = null
+
+    fun attachView(view: V) {
+        this.view = view
+    }
+
+    fun detachView() {
+        this.view = null
+        disposables.clear()
+    }
 }

@@ -43,13 +43,13 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
                 .inject(this)
 
         presenter.attachView(this)
-        presenter.loadNote(getCurrentNoteId())
+        presenter.loadNote(getNoteIdFromBundle())
     }
 
     @OnClick(R.id.edit_note_button)
     override fun onEditNoteButtonClicked() {
         val editNoteView = EditNoteView().apply {
-            args.putLong(EditNoteView.EXTRA_NOTE_ID, getCurrentNoteId())
+            args.putLong(EditNoteView.EXTRA_NOTE_ID, getNoteIdFromBundle())
         }
 
         router.pushController(RouterTransaction.with(editNoteView)
@@ -59,14 +59,14 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
 
     @OnClick(R.id.delete_note_button)
     override fun onDeleteNoteButtonClicked() {
-        presenter.deleteNote(getCurrentNoteId())
+        presenter.deleteNote(getNoteIdFromBundle())
     }
 
-    override fun displayNote(note: Note) {
+    override fun onLoadNoteSuccess(note: Note) {
         noteText.text = note.noteText
     }
 
-    override fun onUnableToLoadNote() {
+    override fun onLoadNoteError() {
         showMessage(R.string.note_detail_load_error)
     }
 
@@ -83,9 +83,9 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
         router.popCurrentController()
     }
 
-    override fun onDeleteNoteFailed() {
+    override fun onDeleteNoteError() {
         showMessage(R.string.note_detail_delete_note_failed)
     }
 
-    private fun getCurrentNoteId() = args.getLong(EXTRA_NOTE_ID)
+    private fun getNoteIdFromBundle() = args.getLong(EXTRA_NOTE_ID)
 }

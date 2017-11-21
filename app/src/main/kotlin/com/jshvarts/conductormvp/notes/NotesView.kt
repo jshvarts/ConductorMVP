@@ -42,15 +42,15 @@ class NotesView : BaseView(), NotesContract.View {
     }
 
     override fun onDetach(view: View) {
-        super.onDetach(view)
         presenter.detachView()
+        super.onDetach(view)
     }
 
-    override fun displayNotes(notes: List<Note>) {
+    override fun onLoadNotesSuccess(notes: List<Note>) {
         recyclerViewAdapter.updateNotes(notes)
     }
 
-    override fun onUnableToLoadNotes() {
+    override fun onLoadNotesError() {
         showMessage(R.string.notes_load_error)
     }
 

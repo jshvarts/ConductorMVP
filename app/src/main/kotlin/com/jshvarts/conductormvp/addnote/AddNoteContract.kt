@@ -1,20 +1,20 @@
 package com.jshvarts.conductormvp.addnote
 
-import com.jshvarts.conductormvp.mvp.BasePresenter
+import com.jshvarts.conductormvp.mvp.MvpView
 
 /**
  * MVP Contract for Add a Note screen.
  */
 interface AddNoteContract {
 
-    interface View {
+    interface View : MvpView {
         fun onAddNoteAction(code: Int): Boolean
-        fun onNoteAddSuccess()
-        fun onNoteAddFailed()
+        fun onAddNoteSuccess()
+        fun onAddNoteError()
         fun onNoteValidationFailed()
     }
 
-    interface Presenter : BasePresenter<AddNoteView> {
+    interface Presenter {
         fun addNote(noteText: String)
     }
 }

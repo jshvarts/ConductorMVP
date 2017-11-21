@@ -1,23 +1,23 @@
 package com.jshvarts.conductormvp.editnote
 
 import com.jshvarts.conductormvp.domain.model.Note
-import com.jshvarts.conductormvp.mvp.BasePresenter
+import com.jshvarts.conductormvp.mvp.MvpView
 
 /**
  * MVP Contract for Edit a Note screen.
  */
 interface EditNoteContract {
 
-    interface View {
-        fun displayNoteForEdit(note: Note)
+    interface View : MvpView {
+        fun onLoadNoteSuccess(note: Note)
         fun onEditNoteAction(code: Int): Boolean
-        fun onNoteEditSuccess()
-        fun onNoteEditFailed()
+        fun onEditNoteSuccess()
+        fun onEditNoteError()
         fun onNoteValidationFailed()
         fun onNoteLookupFailed()
     }
 
-    interface Presenter : BasePresenter<EditNoteView> {
+    interface Presenter {
         fun loadNote(id: Long)
         fun editNote(id: Long, noteText: String)
     }

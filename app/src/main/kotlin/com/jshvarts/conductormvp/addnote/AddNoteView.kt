@@ -49,7 +49,7 @@ class AddNoteView : BaseView(), AddNoteContract.View {
         return false
     }
 
-    override fun onNoteAddSuccess() {
+    override fun onAddNoteSuccess() {
         showMessage(R.string.note_add_success)
         router.popCurrentController()
     }
@@ -58,7 +58,7 @@ class AddNoteView : BaseView(), AddNoteContract.View {
         showMessage(R.string.note_add_validation_failed)
     }
 
-    override fun onNoteAddFailed() {
+    override fun onAddNoteError() {
         showMessage(R.string.note_add_failed)
     }
 }

@@ -39,17 +39,17 @@ class EditNoteView : BaseView(), EditNoteContract.View {
         presenter.loadNote(args.getLong(EXTRA_NOTE_ID))
     }
 
-    override fun displayNoteForEdit(note: Note) {
+    override fun onLoadNoteSuccess(note: Note) {
         this.note = note
         editNoteEditText.setText(note.noteText)
     }
 
-    override fun onNoteEditSuccess() {
+    override fun onEditNoteSuccess() {
         showMessage(R.string.note_edit_success)
         router.popCurrentController()
     }
 
-    override fun onNoteEditFailed() {
+    override fun onEditNoteError() {
         showMessage(R.string.note_edit_failed)
     }
 

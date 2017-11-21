@@ -1,25 +1,25 @@
 package com.jshvarts.conductormvp.notedetail
 
 import com.jshvarts.conductormvp.domain.model.Note
-import com.jshvarts.conductormvp.mvp.BasePresenter
+import com.jshvarts.conductormvp.mvp.MvpView
 
 /**
  * MVP Contract for displaying note details and offering actions such as edit and delete.
  */
 interface NoteDetailContract {
 
-    interface View {
-        fun displayNote(note: Note)
-        fun onUnableToLoadNote()
-        fun showLoadingIndicator()
-        fun hideLoadingIndicator()
+    interface View : MvpView {
+        fun onLoadNoteSuccess(note: Note)
+        fun onLoadNoteError()
+        fun onDeleteNoteSuccess()
+        fun onDeleteNoteError()
         fun onEditNoteButtonClicked()
         fun onDeleteNoteButtonClicked()
-        fun onDeleteNoteSuccess()
-        fun onDeleteNoteFailed()
+        fun showLoadingIndicator()
+        fun hideLoadingIndicator()
     }
 
-    interface Presenter : BasePresenter<NoteDetailView> {
+    interface Presenter {
         fun loadNote(id: Long)
         fun deleteNote(id: Long)
     }
