@@ -1,4 +1,4 @@
-package com.jshvarts.notedomain.model
+package com.jshvarts.notedomain
 
 /**
  * Data holder used by View layer.

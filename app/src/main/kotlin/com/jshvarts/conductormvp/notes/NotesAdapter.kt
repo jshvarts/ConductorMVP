@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import com.jshvarts.conductormvp.R
-import com.jshvarts.notedomain.model.Note
+import com.jshvarts.notedomain.Note
 
 /**
  * Recycler View Adapter for displaying and selecting notes.

@@ -1,6 +1,5 @@
 package com.jshvarts.notedomain
 
-import com.jshvarts.notedomain.model.Note
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single

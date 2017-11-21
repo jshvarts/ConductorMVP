@@ -9,7 +9,7 @@ import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import com.jshvarts.conductormvp.R
 import com.jshvarts.conductormvp.NotesApp
-import com.jshvarts.notedomain.model.Note
+import com.jshvarts.notedomain.Note
 import com.jshvarts.conductormvp.editnote.EditNoteView
 import com.jshvarts.conductormvp.mvp.BaseView
 import javax.inject.Inject

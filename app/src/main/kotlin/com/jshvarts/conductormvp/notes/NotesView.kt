@@ -11,7 +11,7 @@ import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import com.jshvarts.conductormvp.R
 import com.jshvarts.conductormvp.addnote.AddNoteView
 import com.jshvarts.conductormvp.NotesApp
-import com.jshvarts.notedomain.model.Note
+import com.jshvarts.notedomain.Note
 import com.jshvarts.conductormvp.mvp.BaseView
 import com.jshvarts.conductormvp.notedetail.NoteDetailView
 import javax.inject.Inject

@@ -5,7 +5,7 @@ import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 
 /**
- * Data holder used by Room repository layer.
+ * Room-specific Note Entity data type.
  */
 @Entity(tableName = "notes")
 data class NoteEntity(

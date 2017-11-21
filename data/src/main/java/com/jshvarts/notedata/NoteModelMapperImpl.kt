@@ -1,6 +1,6 @@
 package com.jshvarts.notedata
 
-import com.jshvarts.notedomain.model.Note
+import com.jshvarts.notedomain.Note
 import com.jshvarts.notedomain.NoteModelMapper
 
 /**

@@ -7,7 +7,7 @@ import butterknife.BindView
 import butterknife.OnEditorAction
 import com.jshvarts.conductormvp.R
 import com.jshvarts.conductormvp.NotesApp
-import com.jshvarts.notedomain.model.Note
+import com.jshvarts.notedomain.Note
 import com.jshvarts.conductormvp.mvp.BaseView
 import javax.inject.Inject
 

@@ -1,7 +1,7 @@
 package com.jshvarts.conductormvp.notes
 
 import com.jshvarts.conductormvp.mvp.MvpView
-import com.jshvarts.notedomain.model.Note
+import com.jshvarts.notedomain.Note
 
 /**
  * MVP Contract for displaying list of notes.
