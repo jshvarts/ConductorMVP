@@ -1,8 +1,8 @@
 package com.jshvarts.conductormvp.notedetail
 
 import com.jshvarts.conductormvp.mvp.BasePresenter
-import com.jshvarts.notedomain.NoteRepository
 import com.jshvarts.notedomain.Note
+import com.jshvarts.notedomain.NoteRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber

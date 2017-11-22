@@ -7,11 +7,11 @@ import butterknife.BindView
 import butterknife.OnClick
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
-import com.jshvarts.conductormvp.R
 import com.jshvarts.conductormvp.NotesApp
-import com.jshvarts.notedomain.Note
+import com.jshvarts.conductormvp.R
 import com.jshvarts.conductormvp.editnote.EditNoteView
 import com.jshvarts.conductormvp.mvp.BaseView
+import com.jshvarts.notedomain.Note
 import javax.inject.Inject
 
 class NoteDetailView : BaseView(), NoteDetailContract.View {
@@ -43,13 +43,13 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
                 .inject(this)
 
         presenter.attachView(this)
-        presenter.loadNote(getNoteIdFromBundle())
+        presenter.loadNote(args.getLong(EXTRA_NOTE_ID))
     }
 
     @OnClick(R.id.edit_note_button)
     override fun onEditNoteButtonClicked() {
         val editNoteView = EditNoteView().apply {
-            args.putLong(EditNoteView.EXTRA_NOTE_ID, getNoteIdFromBundle())
+            args.putLong(EditNoteView.EXTRA_NOTE_ID, args.getLong(EXTRA_NOTE_ID))
         }
 
         router.pushController(RouterTransaction.with(editNoteView)
@@ -59,7 +59,7 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
 
     @OnClick(R.id.delete_note_button)
     override fun onDeleteNoteButtonClicked() {
-        presenter.deleteNote(getNoteIdFromBundle())
+        presenter.deleteNote(args.getLong(EXTRA_NOTE_ID))
     }
 
     override fun onLoadNoteSuccess(note: Note) {
@@ -86,6 +86,4 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
     override fun onDeleteNoteError() {
         showMessage(R.string.note_detail_delete_note_failed)
     }
-
-    private fun getNoteIdFromBundle() = args.getLong(EXTRA_NOTE_ID)
 }

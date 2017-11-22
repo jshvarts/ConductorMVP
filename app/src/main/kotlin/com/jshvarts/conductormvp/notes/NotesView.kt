@@ -8,12 +8,12 @@ import butterknife.BindView
 import butterknife.OnClick
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
+import com.jshvarts.conductormvp.NotesApp
 import com.jshvarts.conductormvp.R
 import com.jshvarts.conductormvp.addnote.AddNoteView
-import com.jshvarts.conductormvp.NotesApp
-import com.jshvarts.notedomain.Note
 import com.jshvarts.conductormvp.mvp.BaseView
 import com.jshvarts.conductormvp.notedetail.NoteDetailView
+import com.jshvarts.notedomain.Note
 import javax.inject.Inject
 
 class NotesView : BaseView(), NotesContract.View {

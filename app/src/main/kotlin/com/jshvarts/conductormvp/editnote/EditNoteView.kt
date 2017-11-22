@@ -5,10 +5,10 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import butterknife.BindView
 import butterknife.OnEditorAction
-import com.jshvarts.conductormvp.R
 import com.jshvarts.conductormvp.NotesApp
-import com.jshvarts.notedomain.Note
+import com.jshvarts.conductormvp.R
 import com.jshvarts.conductormvp.mvp.BaseView
+import com.jshvarts.notedomain.Note
 import javax.inject.Inject
 
 class EditNoteView : BaseView(), EditNoteContract.View {
@@ -23,8 +23,6 @@ class EditNoteView : BaseView(), EditNoteContract.View {
     @BindView(R.id.edit_note_edit_text)
     lateinit var editNoteEditText: TextInputEditText
 
-    lateinit var note: Note
-
     override fun onAttach(view: View) {
         super.onAttach(view)
 
@@ -35,12 +33,10 @@ class EditNoteView : BaseView(), EditNoteContract.View {
                 .inject(this)
 
         presenter.attachView(this)
-
         presenter.loadNote(args.getLong(EXTRA_NOTE_ID))
     }
 
     override fun onLoadNoteSuccess(note: Note) {
-        this.note = note
         editNoteEditText.setText(note.noteText)
     }
 
@@ -70,7 +66,7 @@ class EditNoteView : BaseView(), EditNoteContract.View {
     override fun onEditNoteAction(actionId: Int): Boolean {
         if (actionId == EditorInfo.IME_ACTION_DONE) {
             this.view?.hideKeyboard()
-            presenter.editNote(note.id, editNoteEditText.text.toString())
+            presenter.editNote(args.getLong(EXTRA_NOTE_ID), editNoteEditText.text.toString())
             return true
         }
         return false
