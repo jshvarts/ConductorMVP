@@ -2,6 +2,7 @@ package com.jshvarts.conductormvp
 
 import android.os.Bundle
 import android.support.annotation.RawRes
+import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
@@ -50,16 +51,5 @@ class MainActivity : AppCompatActivity() {
             return true
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    fun setToolbarTitle(@RawRes titleId: Int) {
-        toolbar.title = resources.getString(titleId)
-    }
-
-    fun enableUpArrow(enabled: Boolean) {
-        if (enabled)
-            toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24px)
-        else
-            toolbar.navigationIcon = null
     }
 }
