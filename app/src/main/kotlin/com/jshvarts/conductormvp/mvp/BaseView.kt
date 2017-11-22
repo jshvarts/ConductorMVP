@@ -4,7 +4,6 @@ import android.content.Context
 import android.support.annotation.IdRes
 import android.support.annotation.LayoutRes
 import android.support.annotation.StringRes
-import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
@@ -19,9 +18,10 @@ abstract class BaseView : Controller() {
     override fun onAttach(view: View) {
         super.onAttach(view)
 
-        val activity = activity as AppCompatActivity
-        activity.supportActionBar?.title = resources?.getString(getToolbarTitleId())
-        enableUpArrow(activity.supportActionBar)
+        (activity as AppCompatActivity).supportActionBar?.apply {
+            title = resources?.getString(getToolbarTitleId())
+            setDisplayHomeAsUpEnabled(router.backstackSize > 1)
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
@@ -43,9 +43,5 @@ abstract class BaseView : Controller() {
 
     protected fun showMessage(@IdRes msgResId: Int) {
         Toast.makeText(this.applicationContext, msgResId, Toast.LENGTH_SHORT).show()
-    }
-
-    private fun enableUpArrow(actionBar: ActionBar?) {
-        actionBar?.setDisplayHomeAsUpEnabled(router.backstackSize > 1)
     }
 }
