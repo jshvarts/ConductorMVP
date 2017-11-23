@@ -13,6 +13,9 @@ abstract class BasePresenter<V : MvpView> {
 
     fun detachView() {
         this.view = null
+    }
+
+    fun destroy() {
         disposables.clear()
     }
 }

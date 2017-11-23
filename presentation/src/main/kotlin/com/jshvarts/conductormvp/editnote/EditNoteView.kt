@@ -58,6 +58,11 @@ class EditNoteView : BaseView(), EditNoteContract.View {
         presenter.detachView()
     }
 
+    override fun onDestroy() {
+        presenter.destroy()
+        super.onDestroy()
+    }
+
     override fun getLayoutId() = R.layout.edit_note
 
     override fun getToolbarTitleId() = R.string.screen_title_edit_note

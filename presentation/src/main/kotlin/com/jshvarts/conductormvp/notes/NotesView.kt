@@ -42,8 +42,13 @@ class NotesView : BaseView(), NotesContract.View {
     }
 
     override fun onDetach(view: View) {
-        presenter.detachView()
         super.onDetach(view)
+        presenter.detachView()
+    }
+
+    override fun onDestroy() {
+        presenter.destroy()
+        super.onDestroy()
     }
 
     override fun onLoadNotesSuccess(notes: List<Note>) {

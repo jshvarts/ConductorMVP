@@ -35,6 +35,11 @@ class AddNoteView : BaseView(), AddNoteContract.View {
         presenter.detachView()
     }
 
+    override fun onDestroy() {
+        presenter.destroy()
+        super.onDestroy()
+    }
+
     override fun getLayoutId() = R.layout.add_note
 
     override fun getToolbarTitleId() = R.string.screen_title_add_note

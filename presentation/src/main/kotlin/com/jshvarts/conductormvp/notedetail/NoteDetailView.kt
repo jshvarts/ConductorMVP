@@ -46,6 +46,16 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
         presenter.loadNote(args.getLong(EXTRA_NOTE_ID))
     }
 
+    override fun onDetach(view: View) {
+        super.onDetach(view)
+        presenter.detachView()
+    }
+
+    override fun onDestroy() {
+        presenter.destroy()
+        super.onDestroy()
+    }
+
     @OnClick(R.id.edit_note_button)
     override fun onEditNoteButtonClicked() {
         val editNoteView = EditNoteView()
