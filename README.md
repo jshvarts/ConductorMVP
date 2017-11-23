@@ -18,7 +18,7 @@ The app is configured as multi-project Gradle setup which improves build and tes
 
 * **domain** module contains business logic/use-cases/repository interfaces as well as *Model*
 * **data** module contains implementation of the **domain** layer abstractions
-* **app** module contains *View* and *Presentation* layers as well as DI setup that glues everything together
+* **presentation** module contains *View* and *Presentation* components as well as DI setup that glues all layers together
 
 ![Relationship between modules](images/modules.png?raw=true)
 
