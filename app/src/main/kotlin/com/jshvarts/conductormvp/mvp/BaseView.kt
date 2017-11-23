@@ -18,10 +18,7 @@ abstract class BaseView : Controller() {
     override fun onAttach(view: View) {
         super.onAttach(view)
 
-        (activity as AppCompatActivity).supportActionBar?.apply {
-            title = resources?.getString(getToolbarTitleId())
-            setDisplayHomeAsUpEnabled(router.backstackSize > 1)
-        }
+        setToolbarTitle()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
@@ -43,5 +40,13 @@ abstract class BaseView : Controller() {
 
     protected fun showMessage(@IdRes msgResId: Int) {
         Toast.makeText(this.applicationContext, msgResId, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun setToolbarTitle() {
+        // if the Activity happens to be non-AppCompatActivity or it does not have ActionBar, simply do not set the title
+        (activity as? AppCompatActivity)?.supportActionBar?.apply {
+            title = resources?.getString(getToolbarTitleId())
+            setDisplayHomeAsUpEnabled(router.backstackSize > 1)
+        }
     }
 }
