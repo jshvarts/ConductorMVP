@@ -49,7 +49,7 @@ class EditNoteView : BaseView(), EditNoteContract.View {
         showMessage(R.string.note_edit_failed)
     }
 
-    override fun onNoteLookupFailed() {
+    override fun onNoteLookupError() {
         showMessage(R.string.note_edit_lookup_failed)
     }
 

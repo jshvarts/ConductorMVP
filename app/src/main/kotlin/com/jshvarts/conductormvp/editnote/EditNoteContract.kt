@@ -14,7 +14,7 @@ interface EditNoteContract {
         fun onEditNoteSuccess()
         fun onEditNoteError()
         fun onNoteValidationFailed()
-        fun onNoteLookupFailed()
+        fun onNoteLookupError()
     }
 
     interface Presenter {

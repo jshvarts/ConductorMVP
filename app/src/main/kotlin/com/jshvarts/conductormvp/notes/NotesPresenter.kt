@@ -2,7 +2,6 @@ package com.jshvarts.conductormvp.notes
 
 import com.jshvarts.conductormvp.mvp.BasePresenter
 import com.jshvarts.notedomain.NoteRepository
-import com.jshvarts.notedomain.Note
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
@@ -14,15 +13,7 @@ class NotesPresenter @Inject constructor(private val repository: NoteRepository)
         disposables.add(repository.getAllNotes()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::onLoadNotesSuccess, this::onLoadNotesError))
-    }
-
-    private fun onLoadNotesSuccess(notes: List<Note>) {
-        view?.onLoadNotesSuccess(notes)
-    }
-
-    private fun onLoadNotesError(error: Throwable) {
-        Timber.e(error)
-        view?.onLoadNotesError()
+                .doOnError(Timber::e)
+                .subscribe({ view?.onLoadNotesSuccess(it) }, { view?.onLoadNotesError() }))
     }
 }

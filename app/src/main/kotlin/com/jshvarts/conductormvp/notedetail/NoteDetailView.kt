@@ -48,9 +48,8 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
 
     @OnClick(R.id.edit_note_button)
     override fun onEditNoteButtonClicked() {
-        val editNoteView = EditNoteView().apply {
-            args.putLong(EditNoteView.EXTRA_NOTE_ID, args.getLong(EXTRA_NOTE_ID))
-        }
+        val editNoteView = EditNoteView()
+        editNoteView.args.putLong(EditNoteView.EXTRA_NOTE_ID, args.getLong(EXTRA_NOTE_ID))
 
         router.pushController(RouterTransaction.with(editNoteView)
                 .pushChangeHandler(FadeChangeHandler())

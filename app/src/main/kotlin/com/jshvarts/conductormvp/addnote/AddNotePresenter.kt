@@ -14,15 +14,11 @@ class AddNotePresenter @Inject constructor(private val repository: NoteRepositor
         disposables.add(repository.add(Note(noteText = noteText))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::onAddNoteSuccess, this::onAddNoteError))
-    }
-
-    private fun onAddNoteSuccess() {
-        view?.onAddNoteSuccess()
+                .doOnError(Timber::e)
+                .subscribe({ view?.onAddNoteSuccess() }, this::onAddNoteError))
     }
 
     private fun onAddNoteError(error: Throwable) {
-        Timber.e(error)
         when(error) {
             is IllegalArgumentException -> view?.onNoteValidationFailed()
             else -> view?.onAddNoteError()
