@@ -36,7 +36,6 @@ class NotesView : BaseView(), NotesContract.View {
                 .inject(this)
 
         initRecyclerView(view.context)
-
         presenter.attachView(this)
         presenter.loadNotes()
     }
@@ -58,10 +57,6 @@ class NotesView : BaseView(), NotesContract.View {
     override fun onLoadNotesError() {
         showMessage(R.string.notes_load_error)
     }
-
-    override fun getLayoutId() = R.layout.notes_view
-
-    override fun getToolbarTitleId() = R.string.screen_title_notes
 
     private fun initRecyclerView(context: Context) {
         recyclerView.layoutManager = LinearLayoutManager(context)
@@ -85,4 +80,8 @@ class NotesView : BaseView(), NotesContract.View {
                 .pushChangeHandler(FadeChangeHandler())
                 .popChangeHandler(FadeChangeHandler()))
     }
+
+    override fun getLayoutId() = R.layout.notes_view
+
+    override fun getToolbarTitleId() = R.string.screen_title_notes
 }

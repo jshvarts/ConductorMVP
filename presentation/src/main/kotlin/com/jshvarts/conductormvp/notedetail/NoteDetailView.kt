@@ -29,10 +29,6 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
     @BindView(R.id.note_detail_progress_bar)
     lateinit var progressBar: ProgressBar
 
-    override fun getLayoutId() = R.layout.note_detail
-
-    override fun getToolbarTitleId() = R.string.screen_title_note_detail
-
     override fun onAttach(view: View) {
         super.onAttach(view)
 
@@ -79,11 +75,11 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
         showMessage(R.string.note_detail_load_error)
     }
 
-    override fun showLoadingIndicator() {
+    override fun showLoading() {
         progressBar.visibility = View.VISIBLE
     }
 
-    override fun hideLoadingIndicator() {
+    override fun hideLoading() {
         progressBar.visibility = View.GONE
     }
 
@@ -95,4 +91,8 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
     override fun onDeleteNoteError() {
         showMessage(R.string.note_detail_delete_note_failed)
     }
+
+    override fun getLayoutId() = R.layout.note_detail
+
+    override fun getToolbarTitleId() = R.string.screen_title_note_detail
 }

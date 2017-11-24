@@ -15,8 +15,8 @@ interface NoteDetailContract {
         fun onDeleteNoteError()
         fun onEditNoteButtonClicked()
         fun onDeleteNoteButtonClicked()
-        fun showLoadingIndicator()
-        fun hideLoadingIndicator()
+        fun showLoading()
+        fun hideLoading()
     }
 
     interface Presenter {

@@ -40,10 +40,6 @@ class AddNoteView : BaseView(), AddNoteContract.View {
         super.onDestroy()
     }
 
-    override fun getLayoutId() = R.layout.add_note
-
-    override fun getToolbarTitleId() = R.string.screen_title_add_note
-
     @OnEditorAction(R.id.add_note_edit_text)
     override fun onAddNoteAction(actionId: Int): Boolean {
         if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -66,4 +62,8 @@ class AddNoteView : BaseView(), AddNoteContract.View {
     override fun onAddNoteError() {
         showMessage(R.string.note_add_failed)
     }
+
+    override fun getLayoutId() = R.layout.add_note
+
+    override fun getToolbarTitleId() = R.string.screen_title_add_note
 }

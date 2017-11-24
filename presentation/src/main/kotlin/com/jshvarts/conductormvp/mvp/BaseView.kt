@@ -15,23 +15,16 @@ import com.bluelinelabs.conductor.Controller
 
 abstract class BaseView : Controller() {
 
-    override fun onAttach(view: View) {
-        super.onAttach(view)
-
-        setToolbarTitle()
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         val view = inflater.inflate(getLayoutId(), container, false)
         ButterKnife.bind(this, view)
         return view
     }
 
-    @LayoutRes
-    protected abstract fun getLayoutId(): Int
-
-    @StringRes
-    protected abstract fun getToolbarTitleId(): Int
+    override fun onAttach(view: View) {
+        super.onAttach(view)
+        setToolbarTitle()
+    }
 
     protected fun View.hideKeyboard() {
         val inputMethodManager = applicationContext?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -49,4 +42,10 @@ abstract class BaseView : Controller() {
             setDisplayHomeAsUpEnabled(router.backstackSize > 1)
         }
     }
+
+    @LayoutRes
+    protected abstract fun getLayoutId(): Int
+
+    @StringRes
+    protected abstract fun getToolbarTitleId(): Int
 }

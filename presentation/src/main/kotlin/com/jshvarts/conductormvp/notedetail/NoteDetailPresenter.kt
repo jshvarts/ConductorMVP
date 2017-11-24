@@ -14,8 +14,8 @@ class NoteDetailPresenter @Inject constructor(private val repository: NoteReposi
         disposables.add(repository.findNoteById(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe { view?.showLoadingIndicator() }
-                .doFinally { view?.hideLoadingIndicator() }
+                .doOnSubscribe { view?.showLoading() }
+                .doFinally { view?.hideLoading() }
                 .doOnError(Timber::e)
                 .subscribe({ view?.onLoadNoteSuccess(it) }, { view?.onLoadNoteError() }))
     }

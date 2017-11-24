@@ -63,10 +63,6 @@ class EditNoteView : BaseView(), EditNoteContract.View {
         super.onDestroy()
     }
 
-    override fun getLayoutId() = R.layout.edit_note
-
-    override fun getToolbarTitleId() = R.string.screen_title_edit_note
-
     @OnEditorAction(R.id.edit_note_edit_text)
     override fun onEditNoteAction(actionId: Int): Boolean {
         if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -80,4 +76,8 @@ class EditNoteView : BaseView(), EditNoteContract.View {
     override fun onNoteValidationFailed() {
         showMessage(R.string.note_add_validation_failed)
     }
+
+    override fun getLayoutId() = R.layout.edit_note
+
+    override fun getToolbarTitleId() = R.string.screen_title_edit_note
 }
