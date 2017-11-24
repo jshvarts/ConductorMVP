@@ -1,14 +1,13 @@
 package com.jshvarts.conductormvp.editnote
 
 import com.jshvarts.notedomain.Note
-import com.jshvarts.conductormvp.mvp.MvpView
 
 /**
  * MVP Contract for Edit a Note screen.
  */
 interface EditNoteContract {
 
-    interface View : MvpView {
+    interface View {
         fun onLoadNoteSuccess(note: Note)
         fun onEditNoteAction(code: Int): Boolean
         fun onEditNoteSuccess()

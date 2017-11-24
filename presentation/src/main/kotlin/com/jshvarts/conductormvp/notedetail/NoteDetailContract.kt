@@ -1,6 +1,5 @@
 package com.jshvarts.conductormvp.notedetail
 
-import com.jshvarts.conductormvp.mvp.MvpView
 import com.jshvarts.notedomain.Note
 
 /**
@@ -8,7 +7,7 @@ import com.jshvarts.notedomain.Note
  */
 interface NoteDetailContract {
 
-    interface View : MvpView {
+    interface View {
         fun onLoadNoteSuccess(note: Note)
         fun onLoadNoteError()
         fun onDeleteNoteSuccess()
