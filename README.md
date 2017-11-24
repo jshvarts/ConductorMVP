@@ -20,18 +20,18 @@ The app is configured as multi-project Gradle setup which improves build and tes
 * **data** module contains implementation of the **domain** layer abstractions
 * **presentation** module contains *View* and *Presentation* components as well as DI setup that glues all layers together
 
-![Relationship between modules](images/modules.png?raw=true)
+![Relationship between modules](docs/modules.png?raw=true)
 
 This setup enables you to swap your backend implementation (for instance, migrate to Firebase or Realm) simply by replacing your **data** layer module and modifying a dependency in the **app** module. 
 If the data layer changes, domain layer is not affected.
 
 ## Screenshots
 
-![List of notes](images/notes.png?raw=true)
+![List of notes](docs/notes.png?raw=true)
 
-![Note detail](images/note_detail.png?raw=true)
+![Note detail](docs/note_detail.png?raw=true)
 
-![Edit a note](images/edit_note.png?raw=true)
+![Edit a note](docs/edit_note.png?raw=true)
 
 ## License
 
