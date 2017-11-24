@@ -25,7 +25,7 @@ android {
         applicationId "com.jshvarts.conductormvp"
         versionCode globalConfiguration["androidVersionCode"]
         versionName globalConfiguration["androidVersionName"]
-        testInstrumentationRunner globalConfiguration.getAt("testInstrumentationRunner")
+        testInstrumentationRunner globalConfiguration["testInstrumentationRunner"]
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
@@ -43,8 +43,9 @@ android {
 }
 
 dependencies {
+    implementation project(":domain")
     implementation project(":data")
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
     implementation "com.android.support:design:$supportLibraryVersion"
@@ -75,6 +76,6 @@ dependencies {
     implementation libs.rxJava
     implementation libs.rxAndroid
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    // JUnit
+    implementation libs.junit
 }

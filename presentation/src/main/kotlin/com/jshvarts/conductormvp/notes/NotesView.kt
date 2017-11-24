@@ -36,13 +36,13 @@ class NotesView : BaseView(), NotesContract.View {
                 .inject(this)
 
         initRecyclerView(view.context)
-        presenter.attachView(this)
+        presenter.start(this)
         presenter.loadNotes()
     }
 
     override fun onDetach(view: View) {
         super.onDetach(view)
-        presenter.detachView()
+        presenter.stop()
     }
 
     override fun onDestroy() {

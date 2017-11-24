@@ -32,7 +32,7 @@ class EditNoteView : BaseView(), EditNoteContract.View {
                 .build()
                 .inject(this)
 
-        presenter.attachView(this)
+        presenter.start(this)
         presenter.loadNote(args.getLong(EXTRA_NOTE_ID))
     }
 
@@ -55,7 +55,7 @@ class EditNoteView : BaseView(), EditNoteContract.View {
 
     override fun onDetach(view: View) {
         super.onDetach(view)
-        presenter.detachView()
+        presenter.stop()
     }
 
     override fun onDestroy() {

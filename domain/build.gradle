@@ -2,11 +2,12 @@ apply plugin: 'java-library'
 apply plugin: 'kotlin'
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
 
     implementation libs.rxJava
     implementation libs.rxAndroid
+
+    implementation libs.junit
 }
 
 buildscript {

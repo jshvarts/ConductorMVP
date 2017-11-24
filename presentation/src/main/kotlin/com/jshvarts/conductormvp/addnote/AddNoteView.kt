@@ -27,12 +27,12 @@ class AddNoteView : BaseView(), AddNoteContract.View {
                 .build()
                 .inject(this)
 
-        presenter.attachView(this)
+        presenter.start(this)
     }
 
     override fun onDetach(view: View) {
         super.onDetach(view)
-        presenter.detachView()
+        presenter.stop()
     }
 
     override fun onDestroy() {

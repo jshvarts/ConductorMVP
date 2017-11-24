@@ -38,13 +38,13 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
                 .build()
                 .inject(this)
 
-        presenter.attachView(this)
+        presenter.start(this)
         presenter.loadNote(args.getLong(EXTRA_NOTE_ID))
     }
 
     override fun onDetach(view: View) {
         super.onDetach(view)
-        presenter.detachView()
+        presenter.stop()
     }
 
     override fun onDestroy() {
