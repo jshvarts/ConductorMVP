@@ -12,26 +12,9 @@ import io.reactivex.Single
 class NoteRepositoryImpl(private val noteDao: NoteDaoImpl,
                          private val mapper: NoteModelMapperImpl) : NoteRepository {
 
-    override fun add(note: Note): Completable {
-        return Completable.fromAction {
-            validateForAdd(note)
-            noteDao.add(mapper.toEntity(note))
-        }
-    }
+    override fun insertOrUpdate(note: Note): Completable = Completable.fromAction { noteDao.insertOrUpdate(mapper.toEntity(note)) }
 
-    override fun update(note: Note): Completable {
-        return Completable.fromAction {
-            validateForUpdate(note)
-            noteDao.update(mapper.toEntity(note))
-        }
-    }
-
-    override fun delete(note: Note): Completable {
-        return Completable.fromAction {
-            validateForDelete(note)
-            noteDao.delete(mapper.toEntity(note))
-        }
-    }
+    override fun delete(note: Note): Completable = Completable.fromAction { noteDao.delete(mapper.toEntity(note)) }
 
     override fun findNoteById(id: Long): Maybe<Note> {
         return noteDao.findNoteById(id)

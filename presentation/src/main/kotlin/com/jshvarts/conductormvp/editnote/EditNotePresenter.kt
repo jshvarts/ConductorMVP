@@ -21,7 +21,7 @@ class EditNotePresenter @Inject constructor(private val noteDetailUseCase: NoteD
     }
 
     override fun editNote(id: Long, noteText: String) {
-        disposables.add(editNoteUseCase.update(Note(id, noteText))
+        disposables.add(editNoteUseCase.edit(Note(id, noteText))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnError(Timber::e)

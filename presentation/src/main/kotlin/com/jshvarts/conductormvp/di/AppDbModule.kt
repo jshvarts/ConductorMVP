@@ -5,6 +5,7 @@ import com.jshvarts.notedata.NoteDaoImpl
 import com.jshvarts.notedata.NoteModelMapperImpl
 import com.jshvarts.notedata.NoteRepositoryImpl
 import com.jshvarts.notedata.createNoteDao
+import com.jshvarts.notedomain.model.NoteValidator
 import com.jshvarts.notedomain.repository.NoteRepository
 import dagger.Module
 import dagger.Provides
@@ -20,6 +21,10 @@ class AppDbModule {
     @Singleton
     @Provides
     fun provideNoteModelMapper() = NoteModelMapperImpl()
+
+    @Singleton
+    @Provides
+    fun provideNoteValidator() = NoteValidator()
 
     @Singleton
     @Provides

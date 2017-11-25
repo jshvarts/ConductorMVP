@@ -8,10 +8,7 @@ import io.reactivex.Single
 @Dao
 interface NoteDaoImpl : NoteDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun add(note: NoteEntity)
-
-    @Update
-    fun update(note: NoteEntity)
+    fun insertOrUpdate(note: NoteEntity)
 
     @Delete
     fun delete(note: NoteEntity)
