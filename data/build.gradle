@@ -1,12 +1,9 @@
 apply plugin: 'com.android.library'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
-
 apply plugin: 'kotlin-kapt'
-
-apply from: "$project.rootDir/config/quality.gradle"
+apply from: "$rootDir/config/quality.gradle"
+apply from: "./jacoco.gradle"
 
 ext {
     androidArchVersion = "1.0.0"
@@ -25,12 +22,17 @@ android {
     }
 
     buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
 }
 
 dependencies {
@@ -43,7 +45,11 @@ dependencies {
     implementation "android.arch.persistence.room:rxjava2:$androidArchVersion"
     kapt "android.arch.persistence.room:compiler:$androidArchVersion"
 
+    // JUnit
     implementation libs.junit
+
+    // Mockito Kotlin
+    implementation libs.mockitoKotlin
 }
 repositories {
     mavenCentral()

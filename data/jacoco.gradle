@@ -1,0 +1,53 @@
+apply plugin: 'jacoco'
+
+project.afterEvaluate {
+
+    jacoco {
+        toolVersion = "0.7.9"
+        reportsDir = file("$buildDir/build/reports")
+    }
+
+    def coverageSourceDirs = [
+            "${rootDir}/data/src/main/kotlin"
+    ]
+
+    def buildTypes = android.buildTypes.collect { it }
+
+    def excluded = [
+            '**/R.class',
+            '**/R$*.class',
+            '**/BuildConfig*',
+            '**/Manifest*',
+            '**/NoteDatabase*',
+            '**/test/**',
+            '**/NoteEntity*'
+    ]
+
+    buildTypes.each { buildType ->
+        if (!buildType.testCoverageEnabled) {
+            return
+        }
+
+        def buildTypeName = buildType.name.capitalize()
+        def testTaskName = "test${buildTypeName}UnitTest"
+
+        task "jacoco${buildTypeName}TestReport"(type: JacocoReport, dependsOn: testTaskName) {
+
+            group = "Reporting"
+            description = "Generate Jacoco coverage report for ${buildTypeName} build."
+
+            classDirectories = fileTree(
+                    dir: "${rootDir}/data/build/tmp/kotlin-classes/${buildType.name}",
+                    excludes: excluded
+            )
+
+            sourceDirectories = files(coverageSourceDirs)
+            executionData = files("${buildDir}/jacoco/${testTaskName}.exec")
+
+            reports {
+                html.enabled true
+                xml.enabled false
+            }
+        }
+    }
+}

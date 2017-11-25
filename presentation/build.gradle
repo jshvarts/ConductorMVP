@@ -1,12 +1,9 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
-
 apply plugin: 'kotlin-kapt'
-
-apply from: "$project.rootDir/config/quality.gradle"
+apply from: "$rootDir/config/quality.gradle"
+apply from: "./jacoco.gradle"
 
 ext {
     supportLibraryVersion = "26.1.0"
@@ -29,8 +26,12 @@ android {
         versionName globalConfiguration["androidVersionName"]
         testInstrumentationRunner globalConfiguration["testInstrumentationRunner"]
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
     buildTypes {
+        debug {
+            testCoverageEnabled = true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -80,4 +81,7 @@ dependencies {
 
     // JUnit
     implementation libs.junit
+
+    // Mockito Kotlin
+    implementation libs.mockitoKotlin
 }

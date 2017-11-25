@@ -6,7 +6,6 @@ dependencies {
 
     implementation libs.rxJava
     implementation libs.rxAndroid
-
     implementation libs.junit
 }
 

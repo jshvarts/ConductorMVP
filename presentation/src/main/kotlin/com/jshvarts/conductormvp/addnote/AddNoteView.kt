@@ -41,8 +41,8 @@ class AddNoteView : BaseView(), AddNoteContract.View {
     }
 
     @OnEditorAction(R.id.add_note_edit_text)
-    override fun onAddNoteAction(actionId: Int): Boolean {
-        if (actionId == EditorInfo.IME_ACTION_DONE) {
+    override fun onAddNoteAction(code: Int): Boolean {
+        if (code == EditorInfo.IME_ACTION_DONE) {
             this.view?.hideKeyboard()
             presenter.addNote(addNoteEditText.text.toString())
             return true

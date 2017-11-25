@@ -1,5 +1,6 @@
 package com.jshvarts.conductormvp.editnote
 
+import android.support.annotation.VisibleForTesting
 import com.jshvarts.conductormvp.mvp.BasePresenter
 import com.jshvarts.notedomain.Note
 import com.jshvarts.notedomain.NoteRepository
@@ -26,7 +27,8 @@ class EditNotePresenter @Inject constructor(private val repository: NoteReposito
                 .subscribe({ view?.onEditNoteSuccess() }, this::onEditNoteError))
     }
 
-    private fun onEditNoteError(error: Throwable) {
+    @VisibleForTesting
+    fun onEditNoteError(error: Throwable) {
         when(error) {
             is IllegalArgumentException -> view?.onNoteValidationFailed()
             else -> view?.onEditNoteError()

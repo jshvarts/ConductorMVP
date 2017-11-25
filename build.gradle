@@ -6,11 +6,13 @@ buildscript {
         rxJavaVersion = "2.1.6"
         rxAndroidVersion = "2.0.1"
         junitVersion = "4.12"
+        mockitoKotlinVersion = "1.5.0"
 
         libs = [
-                rxJava    : ('io.reactivex.rxjava2:rxjava:' + rxJavaVersion),
-                rxAndroid : ('io.reactivex.rxjava2:rxandroid:' + rxAndroidVersion),
-                junit     : ('junit:junit:' + junitVersion)
+                rxJava          : ('io.reactivex.rxjava2:rxjava:' + rxJavaVersion),
+                rxAndroid       : ('io.reactivex.rxjava2:rxandroid:' + rxAndroidVersion),
+                junit           : ('junit:junit:' + junitVersion),
+                mockitoKotlin   : ('com.nhaarman:mockito-kotlin-kt1.1:' + mockitoKotlinVersion)
         ]
     }
 
