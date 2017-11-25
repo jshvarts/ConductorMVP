@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply from: "$project.rootDir/config/quality.gradle"
+
 ext {
     supportLibraryVersion = "26.1.0"
     constraintLayoutVersion = "1.0.2"
