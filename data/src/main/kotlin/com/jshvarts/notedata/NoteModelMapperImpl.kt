@@ -1,7 +1,7 @@
 package com.jshvarts.notedata
 
-import com.jshvarts.notedomain.Note
-import com.jshvarts.notedomain.NoteModelMapper
+import com.jshvarts.notedomain.model.Note
+import com.jshvarts.notedomain.repository.NoteModelMapper
 
 /**
  * Maps between Room database entity and model.

@@ -13,7 +13,7 @@ import com.jshvarts.conductormvp.R
 import com.jshvarts.conductormvp.addnote.AddNoteView
 import com.jshvarts.conductormvp.mvp.BaseView
 import com.jshvarts.conductormvp.notedetail.NoteDetailView
-import com.jshvarts.notedomain.Note
+import com.jshvarts.notedomain.model.Note
 import javax.inject.Inject
 
 class NotesView : BaseView(), NotesContract.View {

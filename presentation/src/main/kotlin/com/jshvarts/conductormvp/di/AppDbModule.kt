@@ -5,7 +5,7 @@ import com.jshvarts.notedata.NoteDaoImpl
 import com.jshvarts.notedata.NoteModelMapperImpl
 import com.jshvarts.notedata.NoteRepositoryImpl
 import com.jshvarts.notedata.createNoteDao
-import com.jshvarts.notedomain.NoteRepository
+import com.jshvarts.notedomain.repository.NoteRepository
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

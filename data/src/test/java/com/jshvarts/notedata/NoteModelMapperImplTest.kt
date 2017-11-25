@@ -1,6 +1,6 @@
 package com.jshvarts.notedata
 
-import com.jshvarts.notedomain.Note
+import com.jshvarts.notedomain.model.Note
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test

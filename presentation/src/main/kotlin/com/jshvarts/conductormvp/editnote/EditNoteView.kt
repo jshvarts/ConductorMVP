@@ -8,7 +8,7 @@ import butterknife.OnEditorAction
 import com.jshvarts.conductormvp.NotesApp
 import com.jshvarts.conductormvp.R
 import com.jshvarts.conductormvp.mvp.BaseView
-import com.jshvarts.notedomain.Note
+import com.jshvarts.notedomain.model.Note
 import javax.inject.Inject
 
 class EditNoteView : BaseView(), EditNoteContract.View {

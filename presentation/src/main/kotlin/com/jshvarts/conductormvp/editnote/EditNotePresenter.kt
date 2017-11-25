@@ -2,17 +2,18 @@ package com.jshvarts.conductormvp.editnote
 
 import android.support.annotation.VisibleForTesting
 import com.jshvarts.conductormvp.mvp.BasePresenter
-import com.jshvarts.notedomain.Note
-import com.jshvarts.notedomain.NoteRepository
+import com.jshvarts.notedomain.model.Note
+import com.jshvarts.notedomain.usecases.EditNoteUseCase
+import com.jshvarts.notedomain.usecases.NoteDetailUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 import javax.inject.Inject
 
-class EditNotePresenter @Inject constructor(private val repository: NoteRepository) : BasePresenter<EditNoteView>(), EditNoteContract.Presenter {
+class EditNotePresenter @Inject constructor(private val noteDetailUseCase: NoteDetailUseCase, private val editNoteUseCase: EditNoteUseCase) : BasePresenter<EditNoteView>(), EditNoteContract.Presenter {
 
     override fun loadNote(id: Long) {
-        disposables.add(repository.findNoteById(id)
+        disposables.add(noteDetailUseCase.findNoteById(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnError(Timber::e)
@@ -20,7 +21,7 @@ class EditNotePresenter @Inject constructor(private val repository: NoteReposito
     }
 
     override fun editNote(id: Long, noteText: String) {
-        disposables.add(repository.update(Note(id, noteText))
+        disposables.add(editNoteUseCase.update(Note(id, noteText))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnError(Timber::e)

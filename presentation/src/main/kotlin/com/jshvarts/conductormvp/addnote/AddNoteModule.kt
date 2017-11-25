@@ -1,7 +1,8 @@
 package com.jshvarts.conductormvp.addnote
 
 import com.jshvarts.conductormvp.di.PerScreen
-import com.jshvarts.notedomain.NoteRepository
+import com.jshvarts.notedomain.repository.NoteRepository
+import com.jshvarts.notedomain.usecases.AddNoteUseCase
 import dagger.Module
 import dagger.Provides
 
@@ -10,9 +11,13 @@ class AddNoteModule {
 
     @PerScreen
     @Provides
+    fun provideAddNoteUseCase(noteRepository: NoteRepository) = AddNoteUseCase(noteRepository)
+
+    @PerScreen
+    @Provides
     fun provideView() = AddNoteView()
 
     @PerScreen
     @Provides
-    fun providePresenter(noteRepository: NoteRepository) = AddNotePresenter(noteRepository)
+    fun providePresenter(addNoteUseCase: AddNoteUseCase) = AddNotePresenter(addNoteUseCase)
 }

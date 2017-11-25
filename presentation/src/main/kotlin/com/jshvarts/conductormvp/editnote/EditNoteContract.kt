@@ -1,6 +1,6 @@
 package com.jshvarts.conductormvp.editnote
 
-import com.jshvarts.notedomain.Note
+import com.jshvarts.notedomain.model.Note
 
 /**
  * MVP Contract for Edit a Note screen.

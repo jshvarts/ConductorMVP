@@ -1,7 +1,9 @@
 package com.jshvarts.conductormvp.notedetail
 
 import com.jshvarts.conductormvp.di.PerScreen
-import com.jshvarts.notedomain.NoteRepository
+import com.jshvarts.notedomain.repository.NoteRepository
+import com.jshvarts.notedomain.usecases.DeleteNoteUseCase
+import com.jshvarts.notedomain.usecases.NoteDetailUseCase
 import dagger.Module
 import dagger.Provides
 
@@ -10,9 +12,17 @@ class NoteDetailModule {
 
     @PerScreen
     @Provides
+    fun provideNoteDetailUseCase(noteRepository: NoteRepository) = NoteDetailUseCase(noteRepository)
+
+    @PerScreen
+    @Provides
+    fun provideDeleteNoteUseCase(noteRepository: NoteRepository) = DeleteNoteUseCase(noteRepository)
+
+    @PerScreen
+    @Provides
     fun provideView() = NoteDetailView()
 
     @PerScreen
     @Provides
-    fun providePresenter(noteRepository: NoteRepository) = NoteDetailPresenter(noteRepository)
+    fun providePresenter(noteDetailUseCase: NoteDetailUseCase, deleteNoteUseCase: DeleteNoteUseCase) = NoteDetailPresenter(noteDetailUseCase, deleteNoteUseCase)
 }

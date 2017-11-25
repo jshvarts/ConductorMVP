@@ -46,10 +46,10 @@ dependencies {
     kapt "android.arch.persistence.room:compiler:$androidArchVersion"
 
     // JUnit
-    implementation libs.junit
+    testImplementation libs.junit
 
     // Mockito Kotlin
-    implementation libs.mockitoKotlin
+    testImplementation libs.mockitoKotlin
 }
 repositories {
     mavenCentral()

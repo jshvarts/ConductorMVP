@@ -1,4 +1,4 @@
-package com.jshvarts.notedomain
+package com.jshvarts.notedomain.model
 
 /**
  * Represents Data model

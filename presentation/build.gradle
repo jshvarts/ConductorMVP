@@ -80,8 +80,8 @@ dependencies {
     implementation libs.rxAndroid
 
     // JUnit
-    implementation libs.junit
+    testImplementation libs.junit
 
     // Mockito Kotlin
-    implementation libs.mockitoKotlin
+    testImplementation libs.mockitoKotlin
 }

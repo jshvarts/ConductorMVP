@@ -1,7 +1,7 @@
 package com.jshvarts.notedata
 
 import android.arch.persistence.room.*
-import com.jshvarts.notedomain.NoteDao
+import com.jshvarts.notedomain.repository.NoteDao
 import io.reactivex.Maybe
 import io.reactivex.Single
 

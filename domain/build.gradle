@@ -18,8 +18,22 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
+
+dependencies {
+    // RxJava and RxAndroid
+    implementation libs.rxJava
+    implementation libs.rxAndroid
+
+    // JUnit
+    testImplementation libs.junit
+
+    // Mockito Kotlin
+    testImplementation libs.mockitoKotlin
+}
+
 repositories {
     mavenCentral()
+    google()
 }
 compileKotlin {
     kotlinOptions {

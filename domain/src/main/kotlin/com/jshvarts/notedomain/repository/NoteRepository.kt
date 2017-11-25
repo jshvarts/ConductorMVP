@@ -1,5 +1,6 @@
-package com.jshvarts.notedomain
+package com.jshvarts.notedomain.repository
 
+import com.jshvarts.notedomain.model.Note
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single

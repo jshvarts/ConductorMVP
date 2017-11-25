@@ -1,7 +1,7 @@
 package com.jshvarts.conductormvp.di
 
 import android.app.Application
-import com.jshvarts.notedomain.NoteRepository
+import com.jshvarts.notedomain.repository.NoteRepository
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
