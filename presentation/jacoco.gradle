@@ -26,7 +26,11 @@ project.afterEvaluate {
             '**/NotesApp.class',
             '**/BuildConfig*',
             '**/test/**',
-            '**/Manifest*'
+            '**/Manifest*',
+            '**/AddNoteView*',
+            '**/EditNoteView*',
+            '**/NoteDetailView*',
+            '**/NotesView*'
     ]
 
     buildTypes.each { buildType ->

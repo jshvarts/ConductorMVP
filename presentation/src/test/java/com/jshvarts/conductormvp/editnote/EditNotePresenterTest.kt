@@ -1,55 +1,120 @@
 package com.jshvarts.conductormvp.editnote
 
+import com.jshvarts.notedomain.model.Note
+import com.jshvarts.notedomain.repository.NoteRepository
 import com.jshvarts.notedomain.usecases.EditNoteUseCase
 import com.jshvarts.notedomain.usecases.NoteDetailUseCase
+import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
+import com.nhaarman.mockito_kotlin.whenever
+import io.reactivex.Completable
+import io.reactivex.Maybe
+import io.reactivex.android.plugins.RxAndroidPlugins
+import io.reactivex.plugins.RxJavaPlugins
+import io.reactivex.schedulers.Schedulers
+import io.reactivex.schedulers.TestScheduler
+import org.junit.After
 import org.junit.Before
 import org.junit.Test
-import org.mockito.InjectMocks
-import org.mockito.Mock
-import org.mockito.MockitoAnnotations
 
 class EditNotePresenterTest {
 
-    @InjectMocks
     private lateinit var testSubject: EditNotePresenter
 
-    @Mock
-    private lateinit var noteDetailUseCase: NoteDetailUseCase
+    private val repository: NoteRepository = mock()
 
-    @Mock
-    private lateinit var editNoteUseCase: EditNoteUseCase
+    private val noteDetailUseCase: NoteDetailUseCase = NoteDetailUseCase(repository)
 
-    @Mock
-    private lateinit var view: EditNoteView
+    private val editNoteUseCase: EditNoteUseCase = EditNoteUseCase(repository)
+
+    private val view: EditNoteView = mock()
+
+    private val testScheduler = TestScheduler()
+
+    private val validNote = Note(1L, "some text")
 
     @Before
     fun setUp() {
-        MockitoAnnotations.initMocks(this)
+        testSubject = EditNotePresenter(noteDetailUseCase, editNoteUseCase)
         testSubject.start(view)
+        RxJavaPlugins.setIoSchedulerHandler({ _ -> testScheduler })
+        RxAndroidPlugins.setInitMainThreadSchedulerHandler { _ -> Schedulers.trampoline() }
+    }
+
+    @After
+    fun tearDown() {
+        testSubject.stop()
+        RxJavaPlugins.reset()
+        RxAndroidPlugins.reset()
     }
 
     @Test
-    fun onEditNoteError_givenErrorIsIllegalArgumentException_callsViewValidationFailed() {
+    fun loadNote_givenFindNoteByIdSuccess_callsViewOnLoadNoteSuccess() {
         // GIVEN
-        val error = IllegalArgumentException()
+        whenever(repository.findNoteById(validNote.id)).thenReturn(Maybe.just(validNote))
 
         // WHEN
-        testSubject.onEditNoteError(error)
+        testSubject.loadNote(validNote.id)
+        testScheduler.triggerActions()
 
         // THEN
-        verify(view).onNoteValidationFailed()
+        verify(view).onLoadNoteSuccess(validNote)
     }
 
     @Test
-    fun onEditNoteError_givenErrorIsNotIllegalArgumentException_callsViewOnEditNoteError() {
+    fun loadNote_givenFindNoteByIdError_callsViewOnNoteLookupError() {
         // GIVEN
-        val error: Throwable = NullPointerException()
+        val noteId = 1L
+        val error: Throwable = RuntimeException()
+        whenever(repository.findNoteById(noteId)).thenReturn(Maybe.error(error))
 
         // WHEN
-        testSubject.onEditNoteError(error)
+        testSubject.loadNote(noteId)
+        testScheduler.triggerActions()
+
+        // THEN
+        verify(view).onNoteLookupError()
+    }
+
+    @Test
+    fun editNote_givenValidNoteAndEditNoteSuccess_callsViewEditNoteSuccess() {
+        // GIVEN
+        whenever(repository.insertOrUpdate(validNote)).thenReturn(Completable.complete())
+
+        // WHEN
+        testSubject.editNote(validNote.id, validNote.noteText)
+        testScheduler.triggerActions()
+
+        // THEN
+        verify(view).onEditNoteSuccess()
+    }
+
+    @Test
+    fun editNote_givenValidNoteAndEditNoteError_callsViewEditNoteError() {
+        // GIVEN
+        val error: Throwable = RuntimeException()
+        whenever(repository.insertOrUpdate(validNote)).thenReturn(Completable.error(error))
+
+        // WHEN
+        testSubject.editNote(validNote.id, validNote.noteText)
+        testScheduler.triggerActions()
 
         // THEN
         verify(view).onEditNoteError()
+    }
+
+    @Test
+    fun editNote_givenEditValidationFails_callsViewOnNoteValidationFailed() {
+        // GIVEN
+        val invalidId = 0L
+        val note = Note(invalidId, "some text")
+        whenever(repository.insertOrUpdate(note)).thenReturn(Completable.complete())
+
+        // WHEN
+        testSubject.editNote(note.id, note.noteText)
+        testScheduler.triggerActions()
+
+        // THEN
+        verify(view).onNoteValidationFailed()
     }
 }

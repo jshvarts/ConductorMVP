@@ -84,4 +84,7 @@ dependencies {
 
     // Mockito Kotlin
     testImplementation libs.mockitoKotlin
+
+    // Hamcrest
+    testImplementation libs.hamcrest
 }

@@ -5,15 +5,7 @@ package com.jshvarts.notedomain.model
  */
 data class Note(val id: Long = 0, val noteText: String = "") {
 
-    fun validateForAdd() {
-        require(validNoteText())
-    }
+    fun isValidForEdit() = id > 0 && noteText.trim().length > 3
 
-    fun validateForEdit() {
-        require(validId() && validNoteText())
-    }
-
-    private fun validId() = this.id > 0
-
-    private fun validNoteText() = this.noteText.trim().length > 3
+    fun isValidForAdd() = noteText.trim().length > 3
 }

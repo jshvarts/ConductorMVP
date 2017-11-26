@@ -1,6 +1,5 @@
 package com.jshvarts.conductormvp.editnote
 
-import android.support.annotation.VisibleForTesting
 import com.jshvarts.conductormvp.mvp.BasePresenter
 import com.jshvarts.notedomain.model.Note
 import com.jshvarts.notedomain.usecases.EditNoteUseCase
@@ -28,8 +27,7 @@ class EditNotePresenter @Inject constructor(private val noteDetailUseCase: NoteD
                 .subscribe({ view?.onEditNoteSuccess() }, this::onEditNoteError))
     }
 
-    @VisibleForTesting
-    fun onEditNoteError(error: Throwable) {
+    private fun onEditNoteError(error: Throwable) {
         when(error) {
             is IllegalArgumentException -> view?.onNoteValidationFailed()
             else -> view?.onEditNoteError()
