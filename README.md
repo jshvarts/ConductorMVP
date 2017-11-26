@@ -18,7 +18,7 @@ The app is configured as multi-project Gradle setup which improves build and tes
 
 * **domain** module contains business logic/use-cases/repository interfaces as well as *Model*
 * **data** module contains implementation of the **domain** layer abstractions
-* **presentation** module contains View and Presenter code as well as Dependency Injection setup that glues all layers together
+* **presentation** module contains Views and Presenters as well as Dependency Injection setup that glues all layers together
 
 ![Relationship between modules](docs/modules.png?raw=true)
 
@@ -32,6 +32,15 @@ If the data layer changes, domain layer is not affected.
 ![Note detail](docs/note_detail.png?raw=true)
 
 ![Edit a note](docs/edit_note.png?raw=true)
+
+## Code Quality
+
+This project aims to maintain high test coverage for all modules. Main libraries used to achieve this:
+ 
+* JUnit
+* Mockito-kotlin
+* Hamcrest
+* Jacoco
 
 ## License
 
