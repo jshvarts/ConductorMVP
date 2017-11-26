@@ -1,7 +1,6 @@
 package com.jshvarts.conductormvp.di
 
 import android.app.Application
-import com.jshvarts.notedomain.model.NoteValidator
 import com.jshvarts.notedomain.repository.NoteRepository
 import dagger.BindsInstance
 import dagger.Component
@@ -18,6 +17,4 @@ interface AppComponent {
     }
 
     fun exposeNoteRepository(): NoteRepository
-
-    fun exposeNoteValidator(): NoteValidator
 }
