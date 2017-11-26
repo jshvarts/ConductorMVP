@@ -10,9 +10,9 @@ class NoteModelMapperImplTest {
     private lateinit var testSubject: NoteModelMapperImpl
 
     companion object {
-        val ID = 1L
-        val NOTE_TEXT = "some text"
-        val NOTE_TIMESTAMP = 2L
+        private const val ID = 1L
+        private const val NOTE_TEXT = "some text"
+        private const val NOTE_TIMESTAMP = 2L
     }
 
     @Before
