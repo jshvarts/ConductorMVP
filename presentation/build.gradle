@@ -87,4 +87,7 @@ dependencies {
 
     // Hamcrest
     testImplementation libs.hamcrest
+
+    // PowerMock
+    testImplementation libs.powerMock
 }

@@ -6,7 +6,6 @@ import com.jshvarts.notedomain.usecases.DeleteNoteUseCase
 import com.jshvarts.notedomain.usecases.NoteDetailUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import timber.log.Timber
 import javax.inject.Inject
 
 class NoteDetailPresenter @Inject constructor(private val noteDetailUseCase: NoteDetailUseCase, private val deleteNoteUseCase: DeleteNoteUseCase) : BasePresenter<NoteDetailView>(), NoteDetailContract.Presenter{
@@ -17,15 +16,13 @@ class NoteDetailPresenter @Inject constructor(private val noteDetailUseCase: Not
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { view?.showLoading() }
                 .doFinally { view?.hideLoading() }
-                .doOnError(Timber::e)
-                .subscribe({ view?.onLoadNoteSuccess(it) }, { view?.onLoadNoteError() }))
+                .subscribe({ view?.onLoadNoteSuccess(it) }, { view?.onLoadNoteError(it) }))
     }
 
     override fun deleteNote(id: Long) {
         disposables.add(deleteNoteUseCase.delete(Note(id))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnError(Timber::e)
-                .subscribe({ view?.onDeleteNoteSuccess() }, { view?.onDeleteNoteError() }))
+                .subscribe({ view?.onDeleteNoteSuccess() }, { view?.onDeleteNoteError(it) }))
     }
 }

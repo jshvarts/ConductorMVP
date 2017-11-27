@@ -9,7 +9,7 @@ interface NotesContract {
 
     interface View {
         fun onLoadNotesSuccess(notes: List<Note>)
-        fun onLoadNotesError()
+        fun onLoadNotesError(throwable: Throwable)
         fun onFabClicked()
     }
 

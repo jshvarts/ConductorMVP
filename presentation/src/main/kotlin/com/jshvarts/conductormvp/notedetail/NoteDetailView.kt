@@ -12,6 +12,7 @@ import com.jshvarts.conductormvp.R
 import com.jshvarts.conductormvp.editnote.EditNoteView
 import com.jshvarts.conductormvp.mvp.BaseView
 import com.jshvarts.notedomain.model.Note
+import timber.log.Timber
 import javax.inject.Inject
 
 class NoteDetailView : BaseView(), NoteDetailContract.View {
@@ -71,7 +72,8 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
         noteText.text = note.noteText
     }
 
-    override fun onLoadNoteError() {
+    override fun onLoadNoteError(throwable: Throwable) {
+        Timber.e(throwable)
         showMessage(R.string.note_detail_load_error)
     }
 
@@ -88,7 +90,8 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
         router.popCurrentController()
     }
 
-    override fun onDeleteNoteError() {
+    override fun onDeleteNoteError(throwable: Throwable) {
+        Timber.e(throwable)
         showMessage(R.string.note_detail_delete_note_failed)
     }
 

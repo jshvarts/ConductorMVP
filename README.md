@@ -35,12 +35,17 @@ If the data layer changes, domain layer is not affected.
 
 ## Code Quality
 
-This project aims to maintain high test coverage for all modules. Main libraries used to achieve this:
+This project aims to maintain high test coverage for all modules.
+
+**Unit test code coverage is at 96%** (Views are excluded from unit tests since they are rather passive).
+
+Main libraries used for testing are:
  
 * JUnit
 * Mockito-kotlin
 * Hamcrest
 * Jacoco
+* PowerMock (strictly for setting/accessing instance variables to avoid adding VisibleForTesting methods)
 
 ## License
 

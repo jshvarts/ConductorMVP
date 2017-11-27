@@ -8,7 +8,7 @@ interface AddNoteContract {
     interface View {
         fun onAddNoteAction(code: Int): Boolean
         fun onAddNoteSuccess()
-        fun onAddNoteError()
+        fun onAddNoteError(throwable: Throwable)
         fun onNoteValidationFailed()
     }
 

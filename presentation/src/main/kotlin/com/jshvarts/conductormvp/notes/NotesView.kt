@@ -14,6 +14,7 @@ import com.jshvarts.conductormvp.addnote.AddNoteView
 import com.jshvarts.conductormvp.mvp.BaseView
 import com.jshvarts.conductormvp.notedetail.NoteDetailView
 import com.jshvarts.notedomain.model.Note
+import timber.log.Timber
 import javax.inject.Inject
 
 class NotesView : BaseView(), NotesContract.View {
@@ -54,7 +55,8 @@ class NotesView : BaseView(), NotesContract.View {
         recyclerViewAdapter.updateNotes(notes)
     }
 
-    override fun onLoadNotesError() {
+    override fun onLoadNotesError(throwable: Throwable) {
+        Timber.e(throwable)
         showMessage(R.string.notes_load_error)
     }
 

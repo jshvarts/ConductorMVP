@@ -8,6 +8,7 @@ import butterknife.OnEditorAction
 import com.jshvarts.conductormvp.NotesApp
 import com.jshvarts.conductormvp.R
 import com.jshvarts.conductormvp.mvp.BaseView
+import timber.log.Timber
 import javax.inject.Inject
 
 class AddNoteView : BaseView(), AddNoteContract.View {
@@ -59,7 +60,8 @@ class AddNoteView : BaseView(), AddNoteContract.View {
         showMessage(R.string.note_add_validation_failed)
     }
 
-    override fun onAddNoteError() {
+    override fun onAddNoteError(throwable: Throwable) {
+        Timber.e(throwable)
         showMessage(R.string.note_add_failed)
     }
 

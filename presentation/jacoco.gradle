@@ -23,14 +23,18 @@ project.afterEvaluate {
             '**/*_Factory.class',
             '**/*_ViewBinding*.class',
             '**/*_MembersInjector.class',
-            '**/NotesApp.class',
+            '**/NotesApp*',
+            '**/NotesApp.Companion*',
             '**/BuildConfig*',
             '**/test/**',
             '**/Manifest*',
             '**/AddNoteView*',
             '**/EditNoteView*',
             '**/NoteDetailView*',
-            '**/NotesView*'
+            '**/NotesView*',
+            '**/BaseView*',
+            '**/NotesAdapter*',
+            '**/MainActivity*'
     ]
 
     buildTypes.each { buildType ->

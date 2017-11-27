@@ -9,9 +9,9 @@ interface NoteDetailContract {
 
     interface View {
         fun onLoadNoteSuccess(note: Note)
-        fun onLoadNoteError()
+        fun onLoadNoteError(throwable: Throwable)
         fun onDeleteNoteSuccess()
-        fun onDeleteNoteError()
+        fun onDeleteNoteError(throwable: Throwable)
         fun onEditNoteButtonClicked()
         fun onDeleteNoteButtonClicked()
         fun showLoading()
