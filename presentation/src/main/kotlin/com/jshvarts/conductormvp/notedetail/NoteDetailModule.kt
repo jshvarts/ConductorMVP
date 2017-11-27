@@ -20,9 +20,5 @@ class NoteDetailModule {
 
     @PerScreen
     @Provides
-    fun provideView() = NoteDetailView()
-
-    @PerScreen
-    @Provides
     fun providePresenter(noteDetailUseCase: NoteDetailUseCase, deleteNoteUseCase: DeleteNoteUseCase) = NoteDetailPresenter(noteDetailUseCase, deleteNoteUseCase)
 }

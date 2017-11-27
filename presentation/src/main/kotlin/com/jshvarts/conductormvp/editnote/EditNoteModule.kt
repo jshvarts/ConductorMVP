@@ -20,9 +20,5 @@ class EditNoteModule {
 
     @PerScreen
     @Provides
-    fun provideView() = EditNoteView()
-
-    @PerScreen
-    @Provides
     fun providePresenter(noteDetailUseCase: NoteDetailUseCase, editNoteUseCase: EditNoteUseCase) = EditNotePresenter(noteDetailUseCase, editNoteUseCase)
 }

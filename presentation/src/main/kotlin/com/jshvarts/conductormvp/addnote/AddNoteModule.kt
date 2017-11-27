@@ -15,9 +15,5 @@ class AddNoteModule {
 
     @PerScreen
     @Provides
-    fun provideView() = AddNoteView()
-
-    @PerScreen
-    @Provides
     fun providePresenter(addNoteUseCase: AddNoteUseCase) = AddNotePresenter(addNoteUseCase)
 }
