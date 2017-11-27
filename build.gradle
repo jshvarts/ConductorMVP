@@ -8,15 +8,13 @@ buildscript {
         junitVersion = "4.12"
         mockitoKotlinVersion = "1.5.0"
         hamcrestVersion = "2.0.0.0"
-        powerMockVersion = "1.7.3"
 
         libs = [
                 rxJava          : ('io.reactivex.rxjava2:rxjava:' + rxJavaVersion),
                 rxAndroid       : ('io.reactivex.rxjava2:rxandroid:' + rxAndroidVersion),
                 junit           : ('junit:junit:' + junitVersion),
                 mockitoKotlin   : ('com.nhaarman:mockito-kotlin-kt1.1:' + mockitoKotlinVersion),
-                hamcrest        : ('org.hamcrest:java-hamcrest:' + hamcrestVersion),
-                powerMock       : ('org.powermock:powermock-core:' + powerMockVersion)
+                hamcrest        : ('org.hamcrest:java-hamcrest:' + hamcrestVersion)
         ]
     }
 

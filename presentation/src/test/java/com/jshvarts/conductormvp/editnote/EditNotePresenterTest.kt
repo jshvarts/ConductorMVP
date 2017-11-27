@@ -8,13 +8,11 @@ import com.nhaarman.mockito_kotlin.*
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.android.plugins.RxAndroidPlugins
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.plugins.RxJavaPlugins
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.schedulers.TestScheduler
 import org.junit.Before
 import org.junit.Test
-import org.powermock.reflect.Whitebox
 
 class EditNotePresenterTest {
 
@@ -100,21 +98,6 @@ class EditNotePresenterTest {
     }
 
     @Test
-    fun loadNote_addsDisposable() {
-        // GIVEN
-        val disposables: CompositeDisposable = mock()
-        Whitebox.setInternalState(testSubject, "disposables", disposables)
-        whenever(repository.findNoteById(validNote.id)).thenReturn(Maybe.just(validNote))
-
-        // WHEN
-        testSubject.loadNote(validNote.id)
-        testScheduler.triggerActions()
-
-        // THEN
-        verify(disposables).add(any())
-    }
-
-    @Test
     fun editNote_givenEditNoteSuccess_callsViewEditNoteSuccess() {
         // GIVEN
         whenever(repository.insertOrUpdate(validNote)).thenReturn(Completable.complete())
@@ -195,20 +178,5 @@ class EditNotePresenterTest {
 
         // THEN
         verify(view, never()).onNoteValidationFailed(any())
-    }
-
-    @Test
-    fun editNote_addsDisposable() {
-        // GIVEN
-        val disposables: CompositeDisposable = mock()
-        Whitebox.setInternalState(testSubject, "disposables", disposables)
-        whenever(repository.insertOrUpdate(validNote)).thenReturn(Completable.complete())
-
-        // WHEN
-        testSubject.editNote(validNote.id, validNote.noteText)
-        testScheduler.triggerActions()
-
-        // THEN
-        verify(disposables).add(any())
     }
 }

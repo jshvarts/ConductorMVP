@@ -45,7 +45,6 @@ Main libraries used for testing are:
 * Mockito-kotlin
 * Hamcrest
 * Jacoco
-* PowerMock (strictly for setting/accessing instance variables to avoid adding VisibleForTesting methods)
 
 ## License
 

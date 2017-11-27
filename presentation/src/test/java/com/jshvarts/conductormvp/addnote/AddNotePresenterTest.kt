@@ -5,13 +5,11 @@ import com.jshvarts.notedomain.usecases.AddNoteUseCase
 import com.nhaarman.mockito_kotlin.*
 import io.reactivex.Completable
 import io.reactivex.android.plugins.RxAndroidPlugins
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.plugins.RxJavaPlugins
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.schedulers.TestScheduler
 import org.junit.Before
 import org.junit.Test
-import org.powermock.reflect.Whitebox
 
 class AddNotePresenterTest {
     private lateinit var testSubject: AddNotePresenter
@@ -118,20 +116,5 @@ class AddNotePresenterTest {
 
         // THEN
         verify(view, never()).onNoteValidationFailed()
-    }
-
-    @Test
-    fun addNote_addsDisposable() {
-        // GIVEN
-        val disposables: CompositeDisposable = mock()
-        Whitebox.setInternalState(testSubject, "disposables", disposables)
-        whenever(repository.insertOrUpdate(any())).thenReturn(Completable.complete())
-
-        // WHEN
-        testSubject.addNote(validNoteText)
-        testScheduler.triggerActions()
-
-        // THEN
-        verify(disposables).add(any())
     }
 }
