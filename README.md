@@ -2,7 +2,9 @@
 
 [![Build Status](https://travis-ci.org/jshvarts/ConductorMVP.svg?branch=master)](https://travis-ci.org/jshvarts/ConductorMVP)
 
-Single Activity Todo app using [Conductor](https://github.com/bluelinelabs/Conductor) implementing MVP pattern (each `Controller` is a View).
+The source code in this repo accompanies my article [Creating Clean Architecture Multi-Project MVP App](http://proandroiddev.com/creating-clean-architecture-multi-project-mvp-app-34d753a187ad).
+
+Here you will find a multi-project single Activity TODO app using [Conductor](https://github.com/bluelinelabs/Conductor) implementing MVP pattern (each `Controller` is a View).
 
 ## Main Libraries
 
