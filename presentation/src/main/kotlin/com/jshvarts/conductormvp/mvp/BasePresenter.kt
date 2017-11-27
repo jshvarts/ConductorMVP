@@ -6,6 +6,7 @@ abstract class BasePresenter<V : BaseView> {
 
     protected val disposables: CompositeDisposable = CompositeDisposable()
     protected var view: V? = null
+        private set
 
     fun start(view: V) {
         this.view = view

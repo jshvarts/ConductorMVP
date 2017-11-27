@@ -3,17 +3,16 @@ package com.jshvarts.conductormvp.notes
 import com.jshvarts.notedomain.model.Note
 import com.jshvarts.notedomain.repository.NoteRepository
 import com.jshvarts.notedomain.usecases.NotesUseCase
-import com.nhaarman.mockito_kotlin.mock
-import com.nhaarman.mockito_kotlin.never
-import com.nhaarman.mockito_kotlin.verify
-import com.nhaarman.mockito_kotlin.whenever
+import com.nhaarman.mockito_kotlin.*
 import io.reactivex.Single
 import io.reactivex.android.plugins.RxAndroidPlugins
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.plugins.RxJavaPlugins
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.schedulers.TestScheduler
 import org.junit.Before
 import org.junit.Test
+import org.powermock.reflect.Whitebox
 
 class NotesPresenterTest {
 
@@ -92,5 +91,20 @@ class NotesPresenterTest {
 
         // THEN
         verify(view, never()).onLoadNotesError(throwable)
+    }
+
+    @Test
+    fun loadNotes_addsDisposable() {
+        // GIVEN
+        val disposables: CompositeDisposable = mock()
+        Whitebox.setInternalState(testSubject, "disposables", disposables)
+        whenever(repository.getAllNotes()).thenReturn(Single.just(notes))
+
+        // WHEN
+        testSubject.loadNotes()
+        testScheduler.triggerActions()
+
+        // THEN
+        verify(disposables).add(any())
     }
 }

@@ -8,12 +8,14 @@ import com.nhaarman.mockito_kotlin.*
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.android.plugins.RxAndroidPlugins
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.plugins.RxJavaPlugins
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.schedulers.TestScheduler
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito.inOrder
+import org.powermock.reflect.Whitebox
 
 class NoteDetailPresenterTest {
 
@@ -112,6 +114,21 @@ class NoteDetailPresenterTest {
     }
 
     @Test
+    fun loadNote_addsDisposable() {
+        // GIVEN
+        val disposables: CompositeDisposable = mock()
+        Whitebox.setInternalState(testSubject, "disposables", disposables)
+        whenever(repository.findNoteById(note.id)).thenReturn(Maybe.just(note))
+
+        // WHEN
+        testSubject.loadNote(note.id)
+        testScheduler.triggerActions()
+
+        // THEN
+        verify(disposables).add(any())
+    }
+
+    @Test
     fun deleteNote_givenDeleteNoteSuccess_callsViewOnDeleteNoteSuccess() {
         // GIVEN
         whenever(repository.delete(any())).thenReturn(Completable.complete())
@@ -165,5 +182,20 @@ class NoteDetailPresenterTest {
 
         // THEN
         verify(view, never()).onDeleteNoteError(throwable)
+    }
+
+    @Test
+    fun deleteNote_addsDisposable() {
+        // GIVEN
+        val disposables: CompositeDisposable = mock()
+        Whitebox.setInternalState(testSubject, "disposables", disposables)
+        whenever(repository.delete(any())).thenReturn(Completable.complete())
+
+        // WHEN
+        testSubject.deleteNote(note.id)
+        testScheduler.triggerActions()
+
+        // THEN
+        verify(disposables).add(any())
     }
 }
