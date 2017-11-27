@@ -11,9 +11,9 @@ interface EditNoteContract {
         fun onLoadNoteSuccess(note: Note)
         fun onEditNoteAction(code: Int): Boolean
         fun onEditNoteSuccess()
-        fun onEditNoteError()
-        fun onNoteValidationFailed()
-        fun onNoteLookupError()
+        fun onEditNoteError(throwable: Throwable)
+        fun onNoteLookupError(throwable: Throwable)
+        fun onNoteValidationFailed(throwable: Throwable)
     }
 
     interface Presenter {

@@ -9,6 +9,7 @@ import com.jshvarts.conductormvp.NotesApp
 import com.jshvarts.conductormvp.R
 import com.jshvarts.conductormvp.mvp.BaseView
 import com.jshvarts.notedomain.model.Note
+import timber.log.Timber
 import javax.inject.Inject
 
 class EditNoteView : BaseView(), EditNoteContract.View {
@@ -45,11 +46,13 @@ class EditNoteView : BaseView(), EditNoteContract.View {
         router.popCurrentController()
     }
 
-    override fun onEditNoteError() {
+    override fun onEditNoteError(throwable: Throwable) {
+        Timber.e(throwable)
         showMessage(R.string.note_edit_failed)
     }
 
-    override fun onNoteLookupError() {
+    override fun onNoteLookupError(throwable: Throwable) {
+        Timber.e(throwable)
         showMessage(R.string.note_edit_lookup_failed)
     }
 
@@ -73,7 +76,8 @@ class EditNoteView : BaseView(), EditNoteContract.View {
         return false
     }
 
-    override fun onNoteValidationFailed() {
+    override fun onNoteValidationFailed(throwable: Throwable) {
+        Timber.w(throwable)
         showMessage(R.string.note_add_validation_failed)
     }
 
