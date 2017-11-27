@@ -40,9 +40,9 @@ class AddNoteView : BaseView(), AddNoteContract.View {
         presenter.stop()
     }
 
-    override fun onDestroyView(view: View) {
+    override fun onDestroy() {
         presenter.destroy()
-        super.onDestroyView(view)
+        super.onDestroy()
     }
 
     @OnEditorAction(R.id.add_note_edit_text)

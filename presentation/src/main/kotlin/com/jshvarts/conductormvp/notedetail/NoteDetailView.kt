@@ -52,9 +52,9 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
         presenter.stop()
     }
 
-    override fun onDestroyView(view: View) {
+    override fun onDestroy() {
         presenter.destroy()
-        super.onDestroyView(view)
+        super.onDestroy()
     }
 
     @OnClick(R.id.edit_note_button)

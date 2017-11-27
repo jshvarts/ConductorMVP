@@ -65,9 +65,9 @@ class EditNoteView : BaseView(), EditNoteContract.View {
         presenter.stop()
     }
 
-    override fun onDestroyView(view: View) {
+    override fun onDestroy() {
         presenter.destroy()
-        super.onDestroyView(view)
+        super.onDestroy()
     }
 
     @OnEditorAction(R.id.edit_note_edit_text)

@@ -49,9 +49,9 @@ class NotesView : BaseView(), NotesContract.View {
         presenter.stop()
     }
 
-    override fun onDestroyView(view: View) {
+    override fun onDestroy() {
         presenter.destroy()
-        super.onDestroyView(view)
+        super.onDestroy()
     }
 
     override fun onLoadNotesSuccess(notes: List<Note>) {
