@@ -27,15 +27,18 @@ class NotesView : BaseView(), NotesContract.View {
 
     private lateinit var recyclerViewAdapter: NotesAdapter
 
-    override fun onAttach(view: View) {
-        super.onAttach(view)
+    override fun onContextAvailable(context: Context) {
+        super.onContextAvailable(context)
 
         DaggerNotesComponent.builder()
                 .appComponent(NotesApp.component)
                 .notesModule(NotesModule())
                 .build()
                 .inject(this)
+    }
 
+    override fun onAttach(view: View) {
+        super.onAttach(view)
         initRecyclerView(view.context)
         presenter.start(this)
         presenter.loadNotes()
@@ -46,9 +49,9 @@ class NotesView : BaseView(), NotesContract.View {
         presenter.stop()
     }
 
-    override fun onDestroy() {
+    override fun onDestroyView(view: View) {
         presenter.destroy()
-        super.onDestroy()
+        super.onDestroyView(view)
     }
 
     override fun onLoadNotesSuccess(notes: List<Note>) {

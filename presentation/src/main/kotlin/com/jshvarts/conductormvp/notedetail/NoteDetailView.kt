@@ -1,5 +1,6 @@
 package com.jshvarts.conductormvp.notedetail
 
+import android.content.Context
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -30,15 +31,18 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
     @BindView(R.id.note_detail_progress_bar)
     lateinit var progressBar: ProgressBar
 
-    override fun onAttach(view: View) {
-        super.onAttach(view)
+    override fun onContextAvailable(context: Context) {
+        super.onContextAvailable(context)
 
         DaggerNoteDetailComponent.builder()
                 .appComponent(NotesApp.component)
                 .noteDetailModule(NoteDetailModule())
                 .build()
                 .inject(this)
+    }
 
+    override fun onAttach(view: View) {
+        super.onAttach(view)
         presenter.start(this)
         presenter.loadNote(args.getLong(EXTRA_NOTE_ID))
     }
@@ -48,9 +52,9 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
         presenter.stop()
     }
 
-    override fun onDestroy() {
+    override fun onDestroyView(view: View) {
         presenter.destroy()
-        super.onDestroy()
+        super.onDestroyView(view)
     }
 
     @OnClick(R.id.edit_note_button)
