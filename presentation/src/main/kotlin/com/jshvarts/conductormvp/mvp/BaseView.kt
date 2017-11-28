@@ -15,7 +15,8 @@ import com.bluelinelabs.conductor.Controller
 
 abstract class BaseView : Controller() {
 
-    private var isInjected: Boolean = false
+    // Inject dependencies once per life of Controller
+    val inject by lazy { injectDependencies() }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         val view = inflater.inflate(getLayoutId(), container, false)
@@ -30,12 +31,7 @@ abstract class BaseView : Controller() {
 
     override fun onContextAvailable(context: Context) {
         super.onContextAvailable(context)
-
-        // Do not re-inject dependencies on config change https://github.com/bluelinelabs/Conductor/issues/388
-        if (!isInjected) {
-            injectDependencies()
-            isInjected = true
-        }
+        inject
     }
 
     protected fun View.hideKeyboard() {
