@@ -27,9 +27,7 @@ class NotesView : BaseView(), NotesContract.View {
 
     private lateinit var recyclerViewAdapter: NotesAdapter
 
-    override fun onContextAvailable(context: Context) {
-        super.onContextAvailable(context)
-
+    override fun injectDependencies() {
         DaggerNotesComponent.builder()
                 .appComponent(NotesApp.component)
                 .notesModule(NotesModule())

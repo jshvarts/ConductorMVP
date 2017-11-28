@@ -15,6 +15,8 @@ import com.bluelinelabs.conductor.Controller
 
 abstract class BaseView : Controller() {
 
+    private var isInjected: Boolean = false
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         val view = inflater.inflate(getLayoutId(), container, false)
         ButterKnife.bind(this, view)
@@ -24,6 +26,16 @@ abstract class BaseView : Controller() {
     override fun onAttach(view: View) {
         super.onAttach(view)
         setToolbarTitle()
+    }
+
+    override fun onContextAvailable(context: Context) {
+        super.onContextAvailable(context)
+
+        // Do not re-inject dependencies on config change https://github.com/bluelinelabs/Conductor/issues/388
+        if (!isInjected) {
+            injectDependencies()
+            isInjected = true
+        }
     }
 
     protected fun View.hideKeyboard() {
@@ -48,4 +60,6 @@ abstract class BaseView : Controller() {
 
     @StringRes
     protected abstract fun getToolbarTitleId(): Int
+
+    protected abstract fun injectDependencies()
 }

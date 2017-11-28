@@ -1,6 +1,5 @@
 package com.jshvarts.conductormvp.addnote
 
-import android.content.Context
 import android.support.design.widget.TextInputEditText
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -20,9 +19,7 @@ class AddNoteView : BaseView(), AddNoteContract.View {
     @BindView(R.id.add_note_edit_text)
     lateinit var addNoteEditText: TextInputEditText
 
-    override fun onContextAvailable(context: Context) {
-        super.onContextAvailable(context)
-
+    override fun injectDependencies() {
         DaggerAddNoteComponent.builder()
                 .appComponent(NotesApp.component)
                 .addNoteModule(AddNoteModule())
