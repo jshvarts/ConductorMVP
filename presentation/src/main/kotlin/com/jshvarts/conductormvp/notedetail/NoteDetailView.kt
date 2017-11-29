@@ -17,10 +17,6 @@ import javax.inject.Inject
 
 class NoteDetailView : BaseView(), NoteDetailContract.View {
 
-    companion object {
-        const val EXTRA_NOTE_ID = "NoteDetailView.noteId"
-    }
-
     @Inject
     lateinit var presenter: NoteDetailPresenter
 
@@ -41,7 +37,7 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
     override fun onAttach(view: View) {
         super.onAttach(view)
         presenter.start(this)
-        presenter.loadNote(args.getLong(EXTRA_NOTE_ID))
+        presenter.loadNote(args.getLong(KEY_NOTE_ID))
     }
 
     override fun onDetach(view: View) {
@@ -56,8 +52,9 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
 
     @OnClick(R.id.edit_note_button)
     override fun onEditNoteButtonClicked() {
-        val editNoteView = EditNoteView()
-        editNoteView.args.putLong(EditNoteView.EXTRA_NOTE_ID, args.getLong(EXTRA_NOTE_ID))
+        val editNoteView = EditNoteView().apply {
+            args.putLong(KEY_NOTE_ID, this@NoteDetailView.args.getLong(KEY_NOTE_ID))
+        }
 
         router.pushController(RouterTransaction.with(editNoteView)
                 .pushChangeHandler(FadeChangeHandler())
@@ -66,7 +63,7 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
 
     @OnClick(R.id.delete_note_button)
     override fun onDeleteNoteButtonClicked() {
-        presenter.deleteNote(args.getLong(EXTRA_NOTE_ID))
+        presenter.deleteNote(args.getLong(KEY_NOTE_ID))
     }
 
     override fun onLoadNoteSuccess(note: Note) {

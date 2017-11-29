@@ -15,6 +15,10 @@ import com.bluelinelabs.conductor.Controller
 
 abstract class BaseView : Controller() {
 
+    protected companion object {
+        const val KEY_NOTE_ID = "noteId"
+    }
+
     // Inject dependencies once per life of Controller
     val inject by lazy { injectDependencies() }
 

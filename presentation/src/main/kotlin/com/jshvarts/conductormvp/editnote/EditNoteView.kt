@@ -14,10 +14,6 @@ import javax.inject.Inject
 
 class EditNoteView : BaseView(), EditNoteContract.View {
 
-    companion object {
-        const val EXTRA_NOTE_ID = "EditNoteView.noteId"
-    }
-
     @Inject
     lateinit var presenter: EditNotePresenter
 
@@ -35,7 +31,7 @@ class EditNoteView : BaseView(), EditNoteContract.View {
     override fun onAttach(view: View) {
         super.onAttach(view)
         presenter.start(this)
-        presenter.loadNote(args.getLong(EXTRA_NOTE_ID))
+        presenter.loadNote(args.getLong(KEY_NOTE_ID))
     }
 
     override fun onLoadNoteSuccess(note: Note) {
@@ -71,7 +67,7 @@ class EditNoteView : BaseView(), EditNoteContract.View {
     override fun onEditNoteAction(code: Int): Boolean {
         if (code == EditorInfo.IME_ACTION_DONE) {
             this.view?.hideKeyboard()
-            presenter.editNote(args.getLong(EXTRA_NOTE_ID), editNoteEditText.text.toString())
+            presenter.editNote(args.getLong(KEY_NOTE_ID), editNoteEditText.text.toString())
             return true
         }
         return false

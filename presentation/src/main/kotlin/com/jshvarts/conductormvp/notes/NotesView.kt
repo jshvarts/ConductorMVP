@@ -70,7 +70,7 @@ class NotesView : BaseView(), NotesContract.View {
 
     private fun onNoteClicked(note: Note) {
         val noteDetailView = NoteDetailView().apply {
-            args.putLong(NoteDetailView.EXTRA_NOTE_ID, note.id)
+            args.putLong(KEY_NOTE_ID, note.id)
         }
         router.pushController(RouterTransaction.with(noteDetailView)
                 .pushChangeHandler(FadeChangeHandler())
