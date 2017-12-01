@@ -12,6 +12,7 @@ import com.jshvarts.conductormvp.NotesApp
 import com.jshvarts.conductormvp.R
 import com.jshvarts.conductormvp.addnote.AddNoteView
 import com.jshvarts.conductormvp.mvp.BaseView
+import com.jshvarts.conductormvp.mvp.MvpPresenter
 import com.jshvarts.conductormvp.notedetail.NoteDetailView
 import com.jshvarts.notedomain.model.Note
 import timber.log.Timber
@@ -40,16 +41,6 @@ class NotesView : BaseView(), NotesContract.View {
         initRecyclerView(view.context)
         presenter.start(this)
         presenter.loadNotes()
-    }
-
-    override fun onDetach(view: View) {
-        super.onDetach(view)
-        presenter.stop()
-    }
-
-    override fun onDestroy() {
-        presenter.destroy()
-        super.onDestroy()
     }
 
     override fun onLoadNotesSuccess(notes: List<Note>) {
@@ -87,4 +78,6 @@ class NotesView : BaseView(), NotesContract.View {
     override fun getLayoutId() = R.layout.notes_view
 
     override fun getToolbarTitleId() = R.string.screen_title_notes
+
+    override fun getPresenter(): MvpPresenter = presenter
 }

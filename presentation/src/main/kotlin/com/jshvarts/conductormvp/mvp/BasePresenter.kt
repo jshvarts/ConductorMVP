@@ -2,7 +2,7 @@ package com.jshvarts.conductormvp.mvp
 
 import io.reactivex.disposables.CompositeDisposable
 
-abstract class BasePresenter<V : BaseView> {
+abstract class BasePresenter<V : BaseView> : MvpPresenter {
 
     protected val disposables: CompositeDisposable = CompositeDisposable()
     protected var view: V? = null
@@ -12,11 +12,11 @@ abstract class BasePresenter<V : BaseView> {
         this.view = view
     }
 
-    fun stop() {
+    override fun stop() {
         this.view = null
     }
 
-    fun destroy() {
+    override fun destroy() {
         disposables.clear()
     }
 }

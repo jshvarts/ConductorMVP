@@ -11,6 +11,7 @@ import com.jshvarts.conductormvp.NotesApp
 import com.jshvarts.conductormvp.R
 import com.jshvarts.conductormvp.editnote.EditNoteView
 import com.jshvarts.conductormvp.mvp.BaseView
+import com.jshvarts.conductormvp.mvp.MvpPresenter
 import com.jshvarts.notedomain.model.Note
 import timber.log.Timber
 import javax.inject.Inject
@@ -38,16 +39,6 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
         super.onAttach(view)
         presenter.start(this)
         presenter.loadNote(args.getLong(KEY_NOTE_ID))
-    }
-
-    override fun onDetach(view: View) {
-        super.onDetach(view)
-        presenter.stop()
-    }
-
-    override fun onDestroy() {
-        presenter.destroy()
-        super.onDestroy()
     }
 
     @OnClick(R.id.edit_note_button)
@@ -96,4 +87,6 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
     override fun getLayoutId() = R.layout.note_detail
 
     override fun getToolbarTitleId() = R.string.screen_title_note_detail
+
+    override fun getPresenter(): MvpPresenter = presenter
 }

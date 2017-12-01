@@ -8,6 +8,7 @@ import butterknife.OnEditorAction
 import com.jshvarts.conductormvp.NotesApp
 import com.jshvarts.conductormvp.R
 import com.jshvarts.conductormvp.mvp.BaseView
+import com.jshvarts.conductormvp.mvp.MvpPresenter
 import com.jshvarts.notedomain.model.Note
 import timber.log.Timber
 import javax.inject.Inject
@@ -53,16 +54,6 @@ class EditNoteView : BaseView(), EditNoteContract.View {
         showMessage(R.string.note_edit_lookup_failed)
     }
 
-    override fun onDetach(view: View) {
-        super.onDetach(view)
-        presenter.stop()
-    }
-
-    override fun onDestroy() {
-        presenter.destroy()
-        super.onDestroy()
-    }
-
     @OnEditorAction(R.id.edit_note_edit_text)
     override fun onEditNoteAction(code: Int): Boolean {
         if (code == EditorInfo.IME_ACTION_DONE) {
@@ -81,4 +72,6 @@ class EditNoteView : BaseView(), EditNoteContract.View {
     override fun getLayoutId() = R.layout.edit_note
 
     override fun getToolbarTitleId() = R.string.screen_title_edit_note
+
+    override fun getPresenter(): MvpPresenter = presenter
 }

@@ -8,6 +8,7 @@ import butterknife.OnEditorAction
 import com.jshvarts.conductormvp.NotesApp
 import com.jshvarts.conductormvp.R
 import com.jshvarts.conductormvp.mvp.BaseView
+import com.jshvarts.conductormvp.mvp.MvpPresenter
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -30,16 +31,6 @@ class AddNoteView : BaseView(), AddNoteContract.View {
     override fun onAttach(view: View) {
         super.onAttach(view)
         presenter.start(this)
-    }
-
-    override fun onDetach(view: View) {
-        super.onDetach(view)
-        presenter.stop()
-    }
-
-    override fun onDestroy() {
-        presenter.destroy()
-        super.onDestroy()
     }
 
     @OnEditorAction(R.id.add_note_edit_text)
@@ -69,4 +60,6 @@ class AddNoteView : BaseView(), AddNoteContract.View {
     override fun getLayoutId() = R.layout.add_note
 
     override fun getToolbarTitleId() = R.string.screen_title_add_note
+
+    override fun getPresenter(): MvpPresenter = presenter
 }

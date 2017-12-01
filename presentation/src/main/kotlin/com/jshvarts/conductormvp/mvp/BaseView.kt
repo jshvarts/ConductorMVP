@@ -22,6 +22,11 @@ abstract class BaseView : Controller() {
     // Inject dependencies once per life of Controller
     val inject by lazy { injectDependencies() }
 
+    override fun onContextAvailable(context: Context) {
+        super.onContextAvailable(context)
+        inject
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         val view = inflater.inflate(getLayoutId(), container, false)
         ButterKnife.bind(this, view)
@@ -33,9 +38,14 @@ abstract class BaseView : Controller() {
         setToolbarTitle()
     }
 
-    override fun onContextAvailable(context: Context) {
-        super.onContextAvailable(context)
-        inject
+    override fun onDetach(view: View) {
+        super.onDetach(view)
+        getPresenter().stop()
+    }
+
+    override fun onDestroy() {
+        getPresenter().destroy()
+        super.onDestroy()
     }
 
     protected fun View.hideKeyboard() {
@@ -62,4 +72,6 @@ abstract class BaseView : Controller() {
     protected abstract fun getToolbarTitleId(): Int
 
     protected abstract fun injectDependencies()
+
+    protected abstract fun getPresenter(): MvpPresenter
 }
