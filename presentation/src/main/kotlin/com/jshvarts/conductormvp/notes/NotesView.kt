@@ -26,7 +26,7 @@ class NotesView : BaseView(), NotesContract.View {
     @BindView(R.id.recycler_view)
     lateinit var recyclerView: RecyclerView
 
-    private lateinit var recyclerViewAdapter: NotesAdapter
+    private val recyclerViewAdapter: NotesAdapter = NotesAdapter()
 
     override fun injectDependencies() {
         DaggerNotesComponent.builder()
@@ -53,10 +53,12 @@ class NotesView : BaseView(), NotesContract.View {
     }
 
     private fun initRecyclerView(context: Context) {
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerViewAdapter = NotesAdapter()
+        with(recyclerView) {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = recyclerViewAdapter
+        }
         recyclerViewAdapter.onItemClick = { onNoteClicked(it)}
-        recyclerView.adapter = recyclerViewAdapter
     }
 
     private fun onNoteClicked(note: Note) {

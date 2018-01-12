@@ -37,8 +37,10 @@ class NoteDetailView : BaseView(), NoteDetailContract.View {
 
     override fun onAttach(view: View) {
         super.onAttach(view)
-        presenter.start(this)
-        presenter.loadNote(args.getLong(KEY_NOTE_ID))
+        with(presenter) {
+            start(this@NoteDetailView)
+            loadNote(args.getLong(KEY_NOTE_ID))
+        }
     }
 
     @OnClick(R.id.edit_note_button)

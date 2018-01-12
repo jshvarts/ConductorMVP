@@ -31,8 +31,10 @@ class EditNoteView : BaseView(), EditNoteContract.View {
 
     override fun onAttach(view: View) {
         super.onAttach(view)
-        presenter.start(this)
-        presenter.loadNote(args.getLong(KEY_NOTE_ID))
+        with(presenter) {
+            start(this@EditNoteView)
+            loadNote(args.getLong(KEY_NOTE_ID))
+        }
     }
 
     override fun onLoadNoteSuccess(note: Note) {
