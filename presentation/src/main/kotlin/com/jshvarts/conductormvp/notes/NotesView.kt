@@ -1,6 +1,5 @@
 package com.jshvarts.conductormvp.notes
 
-import android.content.Context
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -14,6 +13,7 @@ import com.jshvarts.conductormvp.addnote.AddNoteView
 import com.jshvarts.conductormvp.mvp.BaseView
 import com.jshvarts.conductormvp.mvp.MvpPresenter
 import com.jshvarts.conductormvp.notedetail.NoteDetailView
+import com.jshvarts.conductormvp.viewext.initRecyclerView
 import com.jshvarts.notedomain.model.Note
 import timber.log.Timber
 import javax.inject.Inject
@@ -26,7 +26,9 @@ class NotesView : BaseView(), NotesContract.View {
     @BindView(R.id.recycler_view)
     lateinit var recyclerView: RecyclerView
 
-    private val recyclerViewAdapter: NotesAdapter = NotesAdapter()
+    private val clickListener: (Note) -> Unit = this::onNoteClicked
+
+    private val recyclerViewAdapter = NotesAdapter(clickListener)
 
     override fun injectDependencies() {
         DaggerNotesComponent.builder()
@@ -38,9 +40,11 @@ class NotesView : BaseView(), NotesContract.View {
 
     override fun onAttach(view: View) {
         super.onAttach(view)
-        initRecyclerView(view.context)
-        presenter.start(this)
-        presenter.loadNotes()
+        recyclerView.initRecyclerView(LinearLayoutManager(view.context), recyclerViewAdapter)
+        with(presenter) {
+            start(this@NotesView)
+            loadNotes()
+        }
     }
 
     override fun onLoadNotesSuccess(notes: List<Note>) {
@@ -50,15 +54,6 @@ class NotesView : BaseView(), NotesContract.View {
     override fun onLoadNotesError(throwable: Throwable) {
         Timber.e(throwable)
         showMessage(R.string.notes_load_error)
-    }
-
-    private fun initRecyclerView(context: Context) {
-        with(recyclerView) {
-            layoutManager = LinearLayoutManager(context)
-            setHasFixedSize(true)
-            adapter = recyclerViewAdapter
-        }
-        recyclerViewAdapter.onItemClick = { onNoteClicked(it)}
     }
 
     private fun onNoteClicked(note: Note) {
