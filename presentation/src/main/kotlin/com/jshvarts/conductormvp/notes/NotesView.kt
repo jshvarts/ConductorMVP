@@ -10,10 +10,10 @@ import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import com.jshvarts.conductormvp.NotesApp
 import com.jshvarts.conductormvp.R
 import com.jshvarts.conductormvp.addnote.AddNoteView
-import com.jshvarts.conductormvp.viewext.initRecyclerView
 import com.jshvarts.conductormvp.mvp.BaseView
 import com.jshvarts.conductormvp.mvp.MvpPresenter
 import com.jshvarts.conductormvp.notedetail.NoteDetailView
+import com.jshvarts.conductormvp.viewext.initRecyclerView
 import com.jshvarts.notedomain.model.Note
 import timber.log.Timber
 import javax.inject.Inject
@@ -26,9 +26,9 @@ class NotesView : BaseView(), NotesContract.View {
     @BindView(R.id.recycler_view)
     lateinit var recyclerView: RecyclerView
 
-    private val clickListener: (Note) -> Unit = { onNoteClicked(it) }
+    private val clickListener: (Note) -> Unit = this::onNoteClicked
 
-    private val recyclerViewAdapter: NotesAdapter = NotesAdapter(clickListener)
+    private val recyclerViewAdapter = NotesAdapter(clickListener)
 
     override fun injectDependencies() {
         DaggerNotesComponent.builder()
@@ -42,8 +42,8 @@ class NotesView : BaseView(), NotesContract.View {
         super.onAttach(view)
         recyclerView.initRecyclerView(LinearLayoutManager(view.context), recyclerViewAdapter)
         with(presenter) {
-            presenter.start(this@NotesView)
-            presenter.loadNotes()
+            start(this@NotesView)
+            loadNotes()
         }
     }
 
