@@ -10,11 +10,9 @@ import com.jshvarts.notedomain.model.Note
 /**
  * Recycler View Adapter for displaying and selecting notes.
  */
-class NotesAdapter : RecyclerView.Adapter<NotesAdapter.ViewHolder>() {
+class NotesAdapter(val onItemClick: (Note) -> Unit) : RecyclerView.Adapter<NotesAdapter.ViewHolder>() {
 
     val notes = mutableListOf<Note>()
-
-    var onItemClick: (Note) -> Unit = {}
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         notes[position].apply { holder.noteText.text = this.noteText }
